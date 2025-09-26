@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
 
 // Interactive single-file React component — customized with Andrea Simone Foderaro CV data
