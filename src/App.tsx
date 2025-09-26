@@ -7,6 +7,7 @@ import Contact from "./components/sections/Contacts";
 import Education from "./components/sections/Education";
 import Projects from "./components/sections/Projects";
 import Skills from "./components/sections/Skills";
+import MatrixRain from "./components/utils/MatrixRain";
 
 // Interactive single-file React component — customized with Andrea Simone Foderaro CV data
 // Requires: Tailwind CSS and framer-motion installed
@@ -147,27 +148,4 @@ function ProgrammerSprite({ jump }: { jump: boolean }) {
       </svg>
     </motion.div>
   );
-}
-
-function MatrixRain() {
-  const columns = Math.max(20, Math.floor(window.innerWidth / 14));
-  const lines = new Array(columns).fill(0).map((_, i) => i);
-  return (
-    <svg className="w-full h-full" preserveAspectRatio="none">
-      <defs>
-        <linearGradient id="mg" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stopColor="#4ade80" stopOpacity="0.95" />
-          <stop offset="1" stopColor="#10b981" stopOpacity="0.1" />
-        </linearGradient>
-      </defs>
-      {lines.map(i => (
-        <text key={i} x={(i * 14) + 6} y={(Math.random() * window.innerHeight)} fontSize="12" fill="url(#mg)" opacity="0.06">{randomChars()}</text>
-      ))}
-    </svg>
-  );
-}
-
-function randomChars() {
-  const chars = "01{}[]()<>/\\|;:,._-";
-  return chars.charAt(Math.floor(Math.random() * chars.length));
 }
