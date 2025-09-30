@@ -1,11 +1,28 @@
 {
-    "athlete": {
-        "title": "Athletics — Discipline & Teamwork",
-        "description": "Calciatore amatoriale in una squadra locale, ho imparato l'importanza della disciplina, del lavoro di squadra e della perseveranza. Queste esperienze mi hanno insegnato a lavorare efficacemente con gli altri, a gestire il tempo e a mantenere la concentrazione sotto pressione.",
-        "stats": {
-            "position": "Position",
-            "matches": "Matches",
-            "goals": "Goals"
+    "others": {
+        "athlete": {
+            "title": "Athletics — Discipline & Teamwork",
+            "description": "Calciatore amatoriale in una squadra locale, ho imparato l'importanza della disciplina, del lavoro di squadra e della perseveranza. Queste esperienze mi hanno insegnato a lavorare efficacemente con gli altri, a gestire il tempo e a mantenere la concentrazione sotto pressione.",
+            "stats": {
+                "position": "Position",
+                "positionValue": "Defender",
+                "matches": "Matches",
+                "matchesValue": "500+ in career (30+ amateur)",
+                "goals": "Goals",
+                "goalsValue": "1 in amateur leagues"
+            }
+        },
+        "summerCamp": {
+            "title": "Summer Camp Management — Leadership & People Management",
+            "description": "Managed a summer camp for 7 years, overseeing a team and ensuring the safety and enjoyment of children. Developed strong leadership, organizational, and communication skills.",
+            "stats": {
+                "years": "Years Managed",
+                "yearsValue": "7",
+                "staff": "Staff Led",
+                "staffValue": "20+",
+                "children": "Children Supervised",
+                "childrenValue": "100+"
+            }
         }
     }
 }

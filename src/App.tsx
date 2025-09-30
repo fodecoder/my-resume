@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
 import Summary from "./components/sections/Summary";
 import Experience from "./components/sections/Experience";
-import Athlete from "./components/sections/Athlete";
+import Others from "./components/sections/Others";
 import Contact from "./components/sections/Contacts";
 import Education from "./components/sections/Education";
 import Projects from "./components/sections/Projects";
@@ -82,7 +82,7 @@ export default function App() {
           </section>
 
           <section id="Athlete" ref={addRef(5)} className="py-8 w-full">
-            <Athlete />
+            <Others />
           </section>
 
           <section id="Contact" ref={addRef(6)} className="py-8 w-full">

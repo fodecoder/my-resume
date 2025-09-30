@@ -1,11 +1,28 @@
 {
-    "athlete": {
-        "title": "Atleta — Disciplina e Lavoro di Squadra",
-        "description": "Calciatore amatoriale in una squadra locale, ho imparato l'importanza della disciplina, del lavoro di squadra e della perseveranza. Queste esperienze mi hanno insegnato a lavorare efficacemente con gli altri, a gestire il tempo e a mantenere la concentrazione sotto pressione.",
-        "stats": {
-            "position": "Posizione",
-            "matches": "Partite",
-            "goals": "Goal"
+    "others": {
+        "athlete": {
+            "title": "Atleta — Disciplina e Lavoro di Squadra",
+            "description": "Calciatore amatoriale in una squadra locale, ho imparato l'importanza della disciplina, del lavoro di squadra e della perseveranza. Queste esperienze mi hanno insegnato a lavorare efficacemente con gli altri, a gestire il tempo e a mantenere la concentrazione sotto pressione.",
+            "stats": {
+                "position": "Posizione",
+                "positionValue": "Difensore",
+                "matches": "Partite",
+                "matchesValue": "500+ in carriera (30+ dilettanti)",
+                "goals": "Goal",
+                "goalsValue": "1 in leghe dilettanti"
+            }
+        },
+        "summerCamp": {
+            "title": "Gestione Campo Estivo — Leadership e Gestione del Personale",
+            "description": "Ho gestito un campo estivo, supervisionando un team e garantendo la sicurezza e il divertimento di bambini. Ho sviluppato forti competenze di leadership, organizzazione e comunicazione.",
+            "stats": {
+                "years": "Anni Gestiti",
+                "yearsValue": "7",
+                "staff": "Staff Guidato",
+                "staffValue": "20+",
+                "children": "Bambini Supervisionati",
+                "childrenValue": "100+"
+            }
         }
     }
 }
