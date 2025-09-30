@@ -8,6 +8,7 @@ import Education from "./components/sections/Education";
 import Projects from "./components/sections/Projects";
 import Skills from "./components/sections/Skills";
 import MatrixRain from "./components/utils/MatrixRain";
+import { useTranslation } from "react-i18next";
 
 // Interactive single-file React component — customized with Andrea Simone Foderaro CV data
 // Requires: Tailwind CSS and framer-motion installed
@@ -96,9 +97,27 @@ export default function App() {
 }
 
 function Header() {
+  const { i18n } = useTranslation();
+
   return (
     <header className="w-full py-6 px-8 flex justify-between items-center">
       <div className="flex items-center gap-4">
+        {/* Bottone bandiera IT */}
+        <button
+          onClick={() => i18n.changeLanguage("it")}
+          className="text-2xl"
+          aria-label="Italiano"
+        >
+          🇮🇹
+        </button>
+        {/* Bottone bandiera EN */}
+        <button
+          onClick={() => i18n.changeLanguage("en")}
+          className="text-2xl"
+          aria-label="English"
+        >
+          🇬🇧
+        </button>
         <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-500 shadow-inner flex items-center justify-center text-black font-bold">AS</div>
         <div>
           <div className="text-lg font-semibold">Andrea Simone Foderaro</div>

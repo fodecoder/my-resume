@@ -1,0 +1,11 @@
+{
+    "athlete": {
+        "title": "Atleta — Disciplina e Lavoro di Squadra",
+        "description": "Calciatore amatoriale in una squadra locale, ho imparato l'importanza della disciplina, del lavoro di squadra e della perseveranza. Queste esperienze mi hanno insegnato a lavorare efficacemente con gli altri, a gestire il tempo e a mantenere la concentrazione sotto pressione.",
+        "stats": {
+            "position": "Posizione",
+            "matches": "Partite",
+            "goals": "Goal"
+        }
+    }
+}
