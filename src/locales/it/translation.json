@@ -1,4 +1,13 @@
 {
+    "navigation": {
+        "home": "Home",
+        "about": "Chi Sono",
+        "experience": "Esperienza",
+        "projects": "Progetti",
+        "education": "Istruzione",
+        "skills": "Competenze",
+        "contact": "Contatti"
+    },
     "others": {
         "athlete": {
             "title": "Atleta — Disciplina e Lavoro di Squadra",

@@ -1,4 +1,13 @@
 {
+    "navigation": {
+        "home": "Home",
+        "about": "About Me",
+        "experience": "Experience",
+        "projects": "Projects",
+        "education": "Education",
+        "skills": "Skills",
+        "contact": "Contact"
+    },
     "others": {
         "athlete": {
             "title": "Athletics — Discipline & Teamwork",

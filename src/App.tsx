@@ -9,6 +9,7 @@ import Projects from "./components/sections/Projects";
 import Skills from "./components/sections/Skills";
 import MatrixRain from "./components/utils/MatrixRain";
 import { useTranslation } from "react-i18next";
+import ReactCountryFlag from "react-country-flag";
 
 // Interactive single-file React component — customized with Andrea Simone Foderaro CV data
 // Requires: Tailwind CSS and framer-motion installed
@@ -81,7 +82,7 @@ export default function App() {
             <Skills />
           </section>
 
-          <section id="Athlete" ref={addRef(5)} className="py-8 w-full">
+          <section id="Others" ref={addRef(5)} className="py-8 w-full">
             <Others />
           </section>
 
@@ -97,7 +98,7 @@ export default function App() {
 }
 
 function Header() {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   return (
     <header className="w-full py-6 px-8 flex justify-between items-center">
@@ -105,31 +106,33 @@ function Header() {
         {/* Bottone bandiera IT */}
         <button
           onClick={() => i18n.changeLanguage("it")}
-          className="text-2xl"
+          className="text-1lg"
           aria-label="Italiano"
         >
-          🇮🇹
+          <ReactCountryFlag countryCode="IT" svg style={{ width: "2em", height: "2em" }} />
         </button>
         {/* Bottone bandiera EN */}
         <button
           onClick={() => i18n.changeLanguage("en")}
-          className="text-2xl"
+          className="text-1lg"
           aria-label="English"
         >
-          🇬🇧
+          <ReactCountryFlag countryCode="GB" svg style={{ width: "2em", height: "2em" }} />
         </button>
         <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-500 shadow-inner flex items-center justify-center text-black font-bold">AS</div>
         <div>
           <div className="text-lg font-semibold">Andrea Simone Foderaro</div>
-          <div className="text-xs text-slate-400">Software Engineer — Backend · API · IoT · Athlete</div>
+          <div className="text-xs text-slate-400">Software Engineer — Backend · API · .NET · Azure · Kubernetes · IoT · Athlete</div>
         </div>
       </div>
       <nav className="hidden md:flex gap-6 text-slate-300">
-        <a href="#Home" className="hover:text-white">Home</a>
-        <a href="#Experience" className="hover:text-white">Experience</a>
-        <a href="#Projects" className="hover:text-white">Projects</a>
-        <a href="#Education" className="hover:text-white">Education</a>
-        <a href="#Contact" className="hover:text-white">Contact</a>
+        <a href="#Home" className="hover:text-white">{t("navigation.home")}</a>
+        <a href="#AboutMe" className="hover:text-white">{t("navigation.about")}</a>
+        <a href="#Experience" className="hover:text-white">{t("navigation.experience")}</a>
+        <a href="#Projects" className="hover:text-white">{t("navigation.projects")}</a>
+        <a href="#Education" className="hover:text-white">{t("navigation.education")}</a>
+        <a href="#Skills" className="hover:text-white">{t("navigation.skills")}</a>
+        <a href="#Contact" className="hover:text-white">{t("navigation.contact")}</a>
       </nav>
     </header>
   );
