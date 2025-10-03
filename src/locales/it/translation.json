@@ -1,6 +1,7 @@
 {
     "main": {
         "greeting": "Ciao, sono",
+        "acronim": "ASF",
         "name": "Andrea Simone Foderaro",
         "role": "Ingegnere del Software",
         "brief": "Backend · API · .NET · Azure · Kubernetes · IoT · Atleta",

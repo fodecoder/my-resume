@@ -99,6 +99,17 @@ export default function App() {
 
 function Header() {
   const { i18n, t } = useTranslation();
+  const [atHome, setAtHome] = useState(true);
+
+  useEffect(() => {
+    const onScroll = () => {
+      // Considera "atHome" se lo scroll è vicino a 0 (in cima)
+      setAtHome(window.scrollY < 300);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <header className="sticky top-0 z-30 w-full py-6 px-8 flex justify-between items-center">
@@ -119,12 +130,16 @@ function Header() {
         >
           <ReactCountryFlag countryCode="GB" svg style={{ width: "2em", height: "2em" }} />
         </button>
-        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-500 shadow-inner flex items-center justify-center text-black font-bold">AS</div>
-        <div>
-          <div className="text-lg font-semibold">{t("main.name")}</div>
-          <div className="text-xs text-slate-400">{t("main.role")} — {t("main.brief")}</div>
-          <div className="text-xs text-slate-400">{t("main.description")}</div>
-        </div>
+        {!atHome && (
+          <>
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-500 shadow-inner flex items-center justify-center text-black font-bold">{t("main.acronim")}</div>
+            <div>
+              <div className="text-lg font-semibold">{t("main.name")}</div>
+              <div className="text-xs text-slate-400">{t("main.role")} — {t("main.brief")}</div>
+              <div className="text-xs text-slate-400">{t("main.description")}</div>
+            </div>
+          </>
+        )}
       </div>
       <nav className="hidden md:flex gap-6 text-slate-300">
         <a href="#Home" className="hover:text-white">{t("navigation.home")}</a>
