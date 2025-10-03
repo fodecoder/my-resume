@@ -1,4 +1,12 @@
 {
+    "main": {
+        "greeting": "Ciao, sono",
+        "name": "Andrea Simone Foderaro",
+        "role": "Ingegnere del Software",
+        "brief": "Backend · API · .NET · Azure · Kubernetes · IoT · Atleta",
+        "description": "Appassionato di creare applicazioni web efficienti e scalabili. Esperto sia nello sviluppo frontend che backend.",
+        "downloadCV": "Scarica CV"
+    },
     "navigation": {
         "home": "Home",
         "about": "Chi Sono",

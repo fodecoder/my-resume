@@ -101,7 +101,7 @@ function Header() {
   const { i18n, t } = useTranslation();
 
   return (
-    <header className="w-full py-6 px-8 flex justify-between items-center">
+    <header className="sticky top-0 z-30 w-full py-6 px-8 flex justify-between items-center">
       <div className="flex items-center gap-4">
         {/* Bottone bandiera IT */}
         <button
@@ -121,8 +121,9 @@ function Header() {
         </button>
         <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-500 shadow-inner flex items-center justify-center text-black font-bold">AS</div>
         <div>
-          <div className="text-lg font-semibold">Andrea Simone Foderaro</div>
-          <div className="text-xs text-slate-400">Software Engineer — Backend · API · .NET · Azure · Kubernetes · IoT · Athlete</div>
+          <div className="text-lg font-semibold">{t("main.name")}</div>
+          <div className="text-xs text-slate-400">{t("main.role")} — {t("main.brief")}</div>
+          <div className="text-xs text-slate-400">{t("main.description")}</div>
         </div>
       </div>
       <nav className="hidden md:flex gap-6 text-slate-300">

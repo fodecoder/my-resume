@@ -1,4 +1,12 @@
 {
+    "main": {
+        "greeting": "Hello, I'm",
+        "name": "Andrea Simone Foderaro",
+        "role": "Software Engineer",
+        "brief": "Backend · API · .NET · Azure · Kubernetes · IoT · Athlete",
+        "description": "Passionate about creating efficient and scalable web applications. Experienced in both frontend and backend development.",
+        "downloadCV": "Download CV"
+    },
     "navigation": {
         "home": "Home",
         "about": "About Me",
