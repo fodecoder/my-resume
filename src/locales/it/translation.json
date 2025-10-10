@@ -63,6 +63,30 @@
             ]
         }
     },
+    "projects": {
+        "title": "Selezionati Progetti & Demo",
+        "inventoryPlatform": {
+            "title": "Piattaforma di Inventario",
+            "desc": "Modello di dominio basato su eventi, API resilienti, migrazioni da monolite a servizi.",
+            "tech": "C#, .NET, Azure"
+        },
+        "iotDiagnostics": {
+            "title": "Diagnostica IoT",
+            "desc": "Diagnostica IoT integrata nel cloud per oltre 500 utenti simultanei.",
+            "tech": "Azure, Kubernetes"
+        },
+        "sharedEditor": {
+            "title": "Editor Condiviso (Progetto Principale)",
+            "desc": "Editor collaborativo in C++ con Qt, controlli di concorrenza in tempo reale.",
+            "tech": "C++, Qt"
+        },
+        "miniMLTools": {
+            "title": "Mini ML Tools",
+            "desc": "Modelli ML per la classificazione dei bug, esperimenti GAN e modelli di bioinformatica.",
+            "tech": "Python, ML"
+        },
+        "code": "Codice"
+    },
     "others": {
         "athlete": {
             "title": "Atleta — Disciplina e Lavoro di Squadra",

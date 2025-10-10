@@ -63,6 +63,34 @@
             ]
         }
     },
+    "projects": {
+        "title": "Selected Projects & Demos",
+        "inventoryPlatform": {
+            "title": "Inventory Platform",
+            "desc": "Event-sourced domain model, resilient APIs, migrations from monolith to services.",
+            "tech": "C#, .NET, Azure",
+            "link": ""
+        },
+        "iotDiagnostics": {
+            "title": "IoT Diagnostics",
+            "desc": "Cloud-integrated IoT diagnostics servicing 500+ concurrent users.",
+            "tech": "Azure, Kubernetes",
+            "link": ""
+        },
+        "sharedEditor": {
+            "title": "Shared Editor (Master Project)",
+            "desc": "Collaborative editor in C++ with Qt, real-time concurrency controls.",
+            "tech": "C++, Qt",
+            "link": "https://github.com/fodecoder"
+        },
+        "miniMLTools": {
+            "title": "Mini ML Tools",
+            "desc": "ML models for bug classification, GAN experiments and bioinformatics models.",
+            "tech": "Python, ML",
+            "link": "https://github.com/fodecoder"
+        },
+        "code": "Code"
+    },
     "others": {
         "athlete": {
             "title": "Athletics — Discipline & Teamwork",
