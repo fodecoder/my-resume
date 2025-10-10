@@ -8,8 +8,7 @@ import Education from "./components/sections/Education";
 import Projects from "./components/sections/Projects";
 import Skills from "./components/sections/Skills";
 import MatrixRain from "./components/utils/MatrixRain";
-import { useTranslation } from "react-i18next";
-import ReactCountryFlag from "react-country-flag";
+import Header from "./components/sections/Header";
 
 // Interactive single-file React component — customized with Andrea Simone Foderaro CV data
 // Requires: Tailwind CSS and framer-motion installed
@@ -18,8 +17,15 @@ import ReactCountryFlag from "react-country-flag";
 export default function App() {
   const [scrollY, setScrollY] = useState(0);
   const [jump, setJump] = useState(false);
+  const [dark, setDark] = useState(() =>
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+  );
   const controls = useAnimation();
   const sectionsRef = useRef<(HTMLElement | null)[]>([]);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", dark);
+  }, [dark]);
 
   useEffect(() => {
     const onScroll = () => setScrollY(window.scrollY || window.pageYOffset);
@@ -46,111 +52,69 @@ export default function App() {
   };
 
   return (
-    <div className="py-8 bg-black text-slate-100 antialiased w-full">
-      <div className="fixed inset-0 pointer-events-none">
-        <MatrixRain />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-black/95" />
-      </div>
-
-      <div className="relative z-10 w-full">
-        <Header />
-
-        <div className="fixed bottom-8 left-6 z-20">
-          <motion.div custom={0} animate={controls} className="w-28 h-28" style={{ transformOrigin: "50% 70%" }}>
-            <ProgrammerSprite jump={jump} />
-          </motion.div>
+    <div
+      style={{
+        background: "var(--bg)",
+        color: "var(--text)",
+      }}
+      className="py-8 antialiased w-full min-h-screen transition-colors"
+    >
+      <button
+        onClick={() => setDark(d => !d)}
+        className="fixed top-4 right-4 z-50 px-3 py-2 rounded-full bg-slate-200 dark:bg-slate-700 shadow"
+        aria-label="Toggle theme"
+      >
+        {dark ? "🌙" : "☀️"}
+      </button>
+      <div className="py-8 bg-bg text-slate-100 antialiased w-full">
+        <div className="fixed inset-0 pointer-events-none">
+          <MatrixRain />
+          <div className="absolute inset-0 bg-bg-to-b from-transparent via-black/60 to-black/95" />
         </div>
 
-        <main className="w-full p-6 space-y-8 max-w-none">
-          <section id="Home" ref={addRef(0)} className="py-8 flex items-center w-full">
-            <Summary />
-          </section>
+        <div className="relative z-10 w-full">
+          <Header />
 
-          <section id="Experience" ref={addRef(1)} className="py-8 w-full">
-            <Experience />
-          </section>
+          <div className="fixed bottom-8 left-6 z-20">
+            <motion.div custom={0} animate={controls} className="w-28 h-28" style={{ transformOrigin: "50% 70%" }}>
+              <ProgrammerSprite jump={jump} />
+            </motion.div>
+          </div>
 
-          <section id="Projects" ref={addRef(2)} className="py-8 w-full">
-            <Projects />
-          </section>
+          <main className="w-full p-6 space-y-8 max-w-none">
+            <section id="Home" ref={addRef(0)} className="py-8 flex items-center w-full">
+              <Summary />
+            </section>
 
-          <section id="Education" ref={addRef(3)} className="py-8 w-full">
-            <Education />
-          </section>
+            <section id="Experience" ref={addRef(1)} className="py-8 w-full">
+              <Experience />
+            </section>
 
-          <section id="Skills" ref={addRef(4)} className="py-8 w-full">
-            <Skills />
-          </section>
+            <section id="Projects" ref={addRef(2)} className="py-8 w-full">
+              <Projects />
+            </section>
 
-          <section id="Others" ref={addRef(5)} className="py-8 w-full">
-            <Others />
-          </section>
+            <section id="Education" ref={addRef(3)} className="py-8 w-full">
+              <Education />
+            </section>
 
-          <section id="Contact" ref={addRef(6)} className="py-8 w-full">
-            <Contact />
-          </section>
-        </main>
+            <section id="Skills" ref={addRef(4)} className="py-8 w-full">
+              <Skills />
+            </section>
 
-        <footer className="py-8 text-center text-sm text-slate-400">Generated interactive CV — Andrea Simone Foderaro</footer>
+            <section id="Others" ref={addRef(5)} className="py-8 w-full">
+              <Others />
+            </section>
+
+            <section id="Contact" ref={addRef(6)} className="py-8 w-full">
+              <Contact />
+            </section>
+          </main>
+
+          <footer className="py-8 text-center text-sm text-slate-400">Generated interactive CV — Andrea Simone Foderaro</footer>
+        </div>
       </div>
     </div>
-  );
-}
-
-function Header() {
-  const { i18n, t } = useTranslation();
-  const [atHome, setAtHome] = useState(true);
-
-  useEffect(() => {
-    const onScroll = () => {
-      // Considera "atHome" se lo scroll è vicino a 0 (in cima)
-      setAtHome(window.scrollY < 300);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  return (
-    <header className="sticky top-0 z-30 w-full py-6 px-8 flex justify-between items-center">
-      <div className="flex items-center gap-4">
-        {/* Bottone bandiera IT */}
-        <button
-          onClick={() => i18n.changeLanguage("it")}
-          className="text-1lg"
-          aria-label="Italiano"
-        >
-          <ReactCountryFlag countryCode="IT" svg style={{ width: "2em", height: "2em" }} />
-        </button>
-        {/* Bottone bandiera EN */}
-        <button
-          onClick={() => i18n.changeLanguage("en")}
-          className="text-1lg"
-          aria-label="English"
-        >
-          <ReactCountryFlag countryCode="GB" svg style={{ width: "2em", height: "2em" }} />
-        </button>
-        {!atHome && (
-          <>
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-500 shadow-inner flex items-center justify-center text-black font-bold">{t("main.acronim")}</div>
-            <div>
-              <div className="text-lg font-semibold">{t("main.name")}</div>
-              <div className="text-xs text-slate-400">{t("main.role")} — {t("main.brief")}</div>
-              <div className="text-xs text-slate-400">{t("main.description")}</div>
-            </div>
-          </>
-        )}
-      </div>
-      <nav className="hidden md:flex gap-6 text-slate-300">
-        <a href="#Home" className="hover:text-white">{t("navigation.home")}</a>
-        <a href="#AboutMe" className="hover:text-white">{t("navigation.about")}</a>
-        <a href="#Experience" className="hover:text-white">{t("navigation.experience")}</a>
-        <a href="#Projects" className="hover:text-white">{t("navigation.projects")}</a>
-        <a href="#Education" className="hover:text-white">{t("navigation.education")}</a>
-        <a href="#Skills" className="hover:text-white">{t("navigation.skills")}</a>
-        <a href="#Contact" className="hover:text-white">{t("navigation.contact")}</a>
-      </nav>
-    </header>
   );
 }
 
