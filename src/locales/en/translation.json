@@ -5,8 +5,22 @@
         "name": "Andrea Simone Foderaro",
         "role": "Software Engineer",
         "brief": "Backend · API · .NET · Azure · Kubernetes · IoT · Athlete",
-        "description": "Passionate about creating efficient and scalable web applications. Experienced in both frontend and backend development.",
-        "downloadCV": "Download CV"
+        "description": "Software engineer with strong backend and API expertise. Proven track record in designing scalable systems, IoT solutions and performance optimization. Athlete: disciplined, team-driven, high endurance. Passionate about creating efficient and scalable web applications. Experienced in both frontend and backend development.",
+        "downloadCV": "Download CV",
+        "email": "Email: foderaroandrea@gmail.com",
+        "phone": "Phone: (+39) 3332053692",
+        "linkedin": "andrea-simone-foderaro",
+        "snapshot": {
+            "title": "Snapshot",
+            "roleLabel": "Role",
+            "role": "Computer Engineer",
+            "experienceLabel": "Experience",
+            "experience": "2021 – Present",
+            "stackLabel": "Stack",
+            "stack": "C# · .NET · Python · Azure · Docker · Kubernetes · SQL",
+            "athleteLabel": "Athlete",
+            "athlete": "Defender — active player"
+        }
     },
     "navigation": {
         "home": "Home",
@@ -16,6 +30,38 @@
         "education": "Education",
         "skills": "Skills",
         "contact": "Contact"
+    },
+    "experience": {
+        "title": "Experience & Projects",
+        "taglio": {
+            "company": "Taglio S.R.L.",
+            "role": "Software Engineer — Backend Developer & API Specialist",
+            "period": "Jun 2024 – Present | Piobesi D'Alba, Italy",
+            "bullets": [
+                "Developed backend solutions for inventory management and machine control — improved processing efficiency by 40% and reduced downtime by 25%.",
+                "Designed and implemented 30+ REST APIs with 99.9% uptime and response times under 200ms.",
+                "Collaborated with cross-functional teams, reducing bug resolution time by 60%."
+            ]
+        },
+        "cluster": {
+            "company": "Cluster Reply",
+            "role": "Cloud & IoT Developer — Technical Lead & Azure IoT Specialist",
+            "period": "Apr 2021 – May 2024 | Turin, Italy",
+            "bullets": [
+                "Led development of IoT diagnostic machines serving 500+ concurrent users on Azure.",
+                "Managed a team of 4 engineers, improving team velocity by 30% and achieving 95% on-time delivery.",
+                "Architected solutions that reduced integration time by 50% and ensured 99.5% availability."
+            ]
+        },
+        "thesis": {
+            "title": "Automatic Classification of Software Issue Report — Master’s Thesis",
+            "field": "Research & ML Engineer - Computer Engineering",
+            "period": "Apr 2020 – Oct 2020 | Politecnico di Torino, Italy",
+            "bullets": [
+                "Built ML classifier in collaboration with Mozilla: precision 92%, recall 89% — saved developers 15+ hours/week.",
+                "Manually labeled 250+ bugs to produce training dataset; improved automated classification from 70% to 92%."
+            ]
+        }
     },
     "others": {
         "athlete": {

@@ -1,37 +1,40 @@
+import { useTranslation } from "react-i18next";
+
 const Experience = () => {
+  const { t } = useTranslation();
   return (
     <div className="p-8 rounded-2xl bg-gradient-to-br from-[#001219] to-[#001f2f] border border-slate-700 shadow-xl">
-      <h2 className="text-2xl font-bold mb-6">Experience & Projects</h2>
+      <h2 className="text-2xl font-bold mb-6">{t("experience.title")}</h2>
 
       <ExperienceCard
-        company="Taglio S.R.L"
-        role="Software Engineer — Backend Developer & API Specialist"
-        period="Jun 2024 – Present | Piobesi D'Alba, Italy"
+        company={t("experience.taglio.company")}
+        role={t("experience.taglio.role")}
+        period={t("experience.taglio.period")}
         bullets={[
-          "Developed backend solutions for inventory management and machine control — improved processing efficiency by 40% and reduced downtime by 25%.",
-          "Designed and implemented 30+ REST APIs with 99.9% uptime and response times under 200ms.",
-          "Collaborated with cross-functional teams, reducing bug resolution time by 60%."
+          t("experience.taglio.bullets.0"),
+          t("experience.taglio.bullets.1"),
+          t("experience.taglio.bullets.2"),
         ]}
       />
 
       <ExperienceCard
-        company="Cluster Reply S.R.L"
-        role="Software Engineer — Technical Lead"
-        period="Apr 2021 – May 2024 | Turin, Italy"
+        company={t("experience.cluster.company")}
+        role={t("experience.cluster.role")}
+        period={t("experience.cluster.period")}
         bullets={[
-          "Led development of IoT diagnostic machines serving 500+ concurrent users on Azure.",
-          "Managed a team of 4 engineers, improving team velocity by 30% and achieving 95% on-time delivery.",
-          "Architected solutions that reduced integration time by 50% and ensured 99.5% availability."
+          t("experience.cluster.bullets.0"),
+          t("experience.cluster.bullets.1"),
+          t("experience.cluster.bullets.2"),
         ]}
       />
 
       <ExperienceCard
-        company="Automatic Classification of Software Issue Report — Master’s Thesis"
-        role="Research & ML Engineer"
-        period="Apr 2020 – Oct 2020 | Turin, Italy"
+        company={t("experience.thesis.title")}
+        role={t("experience.thesis.field")}
+        period={t("experience.thesis.period")}
         bullets={[
-          "Built ML classifier in collaboration with Mozilla: precision 92%, recall 89% — saved developers 15+ hours/week.",
-          "Manually labeled 250+ bugs to produce training dataset; improved automated classification from 70% to 92%."
+          t("experience.thesis.bullets.0"),
+          t("experience.thesis.bullets.1")
         ]}
       />
     </div>

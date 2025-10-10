@@ -5,8 +5,22 @@
         "name": "Andrea Simone Foderaro",
         "role": "Ingegnere del Software",
         "brief": "Backend · API · .NET · Azure · Kubernetes · IoT · Atleta",
-        "description": "Appassionato di creare applicazioni web efficienti e scalabili. Esperto sia nello sviluppo frontend che backend.",
-        "downloadCV": "Scarica CV"
+        "description": "Ingegnere del software con una solida esperienza in backend e API. Comprovata esperienza nella progettazione di sistemi scalabili, soluzioni IoT e ottimizzazione delle prestazioni. Atleta: disciplinato, orientato al lavoro di squadra, con grande resistenza. Appassionato di creare applicazioni web efficienti e scalabili. Esperto sia nello sviluppo frontend che backend.",
+        "downloadCV": "Scarica CV",
+        "email": "Email: foderaroandrea@gmail.com",
+        "phone": "Telefono: (+39) 333 2053692",
+        "linkedin": "andrea-simone-foderaro",
+        "snapshot": {
+            "title": "Snapshot",
+            "roleLabel": "Ruolo",
+            "role": "Ingegnere Informatico",
+            "experienceLabel": "Esperienza",
+            "experience": "2021 – Presente",
+            "stackLabel": "Stack",
+            "stack": "C# · .NET · Python · Azure · Docker · Kubernetes · SQL",
+            "athleteLabel": "Atleta",
+            "athlete": "Difensore — giocatore attivo"
+        }
     },
     "navigation": {
         "home": "Home",
@@ -16,6 +30,38 @@
         "education": "Istruzione",
         "skills": "Competenze",
         "contact": "Contatti"
+    },
+    "experience": {
+        "title": "Esperienza & Progetti",
+        "taglio": {
+            "company": "Taglio S.R.L.",
+            "role": "Software Engineer — Backend Developer & API Specialist",
+            "period": "Jun 2024 – Present | Piobesi D'Alba, Italy",
+            "bullets": [
+                "Sviluppato soluzioni backend per la gestione dell'inventario e il controllo delle macchine — migliorata l'efficienza del processo del 40% e ridotto i tempi di inattività del 25%.",
+                "Progettato e implementato oltre 30 API REST con un uptime del 99,9% e tempi di risposta inferiori a 200ms.",
+                "Collaborato con team interfunzionali, riducendo il tempo di risoluzione dei bug del 60%."
+            ]
+        },
+        "cluster": {
+            "company": "Cluster Reply",
+            "role": "Cloud & IoT Developer — Technical Lead & Azure IoT Specialist",
+            "period": "Apr 2021 – May 2024 | Torino, Italy",
+            "bullets": [
+                "Guidato lo sviluppo di macchine diagnostiche IoT per oltre 500 utenti simultanei su Azure.",
+                "Gestito un team di 4 ingegneri, migliorando la velocità del team del 30% e raggiungendo il 95% di consegna puntuale.",
+                "Progettato soluzioni che hanno ridotto il tempo di integrazione del 50% e garantito il 99,5% di disponibilità."
+            ]
+        },
+        "thesis": {
+            "title": "Automatic Classification of Software Issue Report — Tesi di Laurea Magistrale",
+            "field": "Research & ML Engineer - Computer Engineering",
+            "period": "Apr 2020 – Oct 2020 | Politecnico di Torino, Italy",
+            "bullets": [
+                "Realizzato un classificatore di machine learning in collaborazione con Mozilla: precisione 92%, richiamo 89% — ha fatto risparmiare agli sviluppatori oltre 15 ore a settimana.",
+                "Etichettato manualmente oltre 250 bug per produrre un dataset di addestramento; migliorata la classificazione automatica dal 70% al 92%."
+            ]
+        }
     },
     "others": {
         "athlete": {
