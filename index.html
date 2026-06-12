@@ -1,13 +1,850 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>my-resume</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Andrea Simone Foderaro — Software Engineer</title>
+  <meta name="description" content="Backend software engineer specialising in .NET, C#, Azure, and distributed systems. Based in Italy.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Andrea Simone Foderaro — Software Engineer">
+  <meta property="og:description" content="Backend engineer with 4+ years building APIs, IoT platforms, and distributed systems on .NET and Azure.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Andrea Simone Foderaro — Software Engineer">
+  <meta name="twitter:description" content="Backend engineer · .NET · Azure · Kubernetes · Piobesi d'Alba, Italy">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── Design tokens ── */
+    :root {
+      --bg:          #FAFAF9;
+      --surface:     #F2F1EF;
+      --border:      #E0DDD8;
+      --text:        #1A1917;
+      --muted:       #6B6860;
+      --accent:      #2563EB;
+      --accent-dim:  #DBEAFE;
+      --mono-bg:     #EEECEA;
+
+      --font-body:   'Inter', system-ui, sans-serif;
+      --font-mono:   'JetBrains Mono', 'Fira Code', monospace;
+
+      --space-1:  4px;
+      --space-2:  8px;
+      --space-3:  12px;
+      --space-4:  16px;
+      --space-5:  24px;
+      --space-6:  32px;
+      --space-7:  48px;
+      --space-8:  64px;
+
+      --max-w: 860px;
+      --radius: 3px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg:         #0F0F0E;
+        --surface:    #1A1917;
+        --border:     #2C2B28;
+        --text:       #E8E6E1;
+        --muted:      #8C8A84;
+        --accent:     #60A5FA;
+        --accent-dim: #1E3A5F;
+        --mono-bg:    #1E1D1A;
+      }
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      min-width: 320px;
+    }
+
+    /* ── Skip link ── */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: var(--space-4);
+      background: var(--accent);
+      color: #fff;
+      padding: var(--space-2) var(--space-4);
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-radius: var(--radius);
+      text-decoration: none;
+      z-index: 100;
+    }
+    .skip-link:focus { top: var(--space-4); }
+
+    /* ── Layout ── */
+    .page-wrapper {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: var(--space-7) var(--space-5);
+    }
+
+    /* ── Typography ── */
+    h1 { font-size: clamp(1.75rem, 5vw, 2.25rem); font-weight: 600; letter-spacing: -0.025em; line-height: 1.15; }
+    h2 { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+    h3 { font-size: 1rem; font-weight: 600; line-height: 1.3; }
+
+    a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    a:hover { text-decoration: none; }
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    /* ── Section dividers ── */
+    section { margin-top: var(--space-7); }
+    section:first-of-type { margin-top: 0; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-5);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--border);
+    }
+    .section-header h2 { white-space: nowrap; }
+    .section-header::after {
+      content: '';
+      flex: 1;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-4);
+      align-items: start;
+    }
+
+    .hero-name { margin-bottom: var(--space-2); }
+
+    .hero-title {
+      font-size: 1.0625rem;
+      color: var(--muted);
+      font-weight: 400;
+      margin-bottom: var(--space-4);
+    }
+
+    .hero-location {
+      font-size: 0.875rem;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-4);
+    }
+
+    .hero-location::before {
+      content: '📍';
+      font-size: 0.75rem;
+    }
+
+    .contact-links {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2) var(--space-4);
+    }
+
+    .contact-links li { display: flex; align-items: center; gap: var(--space-2); }
+
+    .contact-links a {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: var(--text);
+      text-decoration: none;
+      padding: var(--space-1) var(--space-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .contact-links a:hover {
+      border-color: var(--accent);
+      background: var(--accent-dim);
+    }
+    .contact-links a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* ── Summary ── */
+    .summary p {
+      max-width: 72ch;
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    /* ── Skills ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: var(--space-4);
+    }
+
+    .skill-group { }
+    .skill-group-label {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-2);
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1) var(--space-2);
+    }
+
+    .skill-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      background: var(--mono-bg);
+      color: var(--text);
+      padding: 2px var(--space-2);
+      border-radius: var(--radius);
+      white-space: nowrap;
+    }
+
+    /* ── Experience ── */
+    .experience-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    .job { }
+
+    .job-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-2);
+      margin-bottom: var(--space-3);
+    }
+
+    .job-company {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .job-role {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .job-meta {
+      text-align: right;
+    }
+
+    .job-dates {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .job-location {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .job-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1);
+      margin-bottom: var(--space-3);
+    }
+
+    .job-bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .job-bullet-list li {
+      padding-left: var(--space-4);
+      position: relative;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .job-bullet-list li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--muted);
+    }
+
+    /* Timeline accent */
+    .experience-list .job {
+      position: relative;
+      padding-left: var(--space-5);
+      border-left: 2px solid var(--border);
+    }
+
+    .experience-list .job::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 6px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+    }
+
+    /* ── Projects ── */
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+    }
+
+    .project { }
+
+    .project-header {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-2);
+    }
+
+    .project-title {
+      font-weight: 600;
+      font-size: 0.9375rem;
+    }
+
+    .project-label {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--muted);
+      background: var(--mono-bg);
+      padding: 1px var(--space-2);
+      border-radius: var(--radius);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      margin-bottom: var(--space-2);
+    }
+
+    .project-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1);
+    }
+
+    /* ── Education ── */
+    .education-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+    }
+
+    .edu-item { }
+    .edu-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-2);
+      margin-bottom: var(--space-1);
+    }
+    .edu-institution { font-weight: 600; }
+    .edu-degree { color: var(--muted); font-size: 0.875rem; margin-top: 2px; }
+    .edu-date {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .edu-grade {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: var(--accent);
+    }
+    .edu-note {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* ── Extras ── */
+    .extras-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: var(--space-4);
+    }
+
+    .extra-item h3 {
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: var(--space-1);
+    }
+
+    .extra-item p {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: var(--space-7);
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+
+    footer p {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .page-wrapper { padding: var(--space-5) var(--space-4); }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .job-header {
+        grid-template-columns: 1fr;
+      }
+      .job-meta {
+        text-align: left;
+      }
+      .edu-header {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .skills-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Print ── */
+    @media print {
+      :root {
+        --bg: #fff;
+        --surface: #f5f5f5;
+        --border: #ccc;
+        --text: #111;
+        --muted: #555;
+        --accent: #1a4ca8;
+        --accent-dim: #e8eef8;
+        --mono-bg: #eee;
+      }
+
+      body { font-size: 10pt; }
+
+      .page-wrapper {
+        max-width: 100%;
+        padding: 0.5cm 1cm;
+      }
+
+      h1 { font-size: 20pt; }
+      section { margin-top: 18pt; }
+
+      .contact-links a {
+        border: none;
+        padding: 0;
+        font-size: 8pt;
+      }
+
+      .experience-list .job { break-inside: avoid; }
+      .project { break-inside: avoid; }
+
+      a { color: var(--accent); text-decoration: none; }
+      footer { display: none; }
+    }
+
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="page-wrapper">
+    <main id="main-content">
+
+      <!-- ── HERO ── -->
+      <header>
+        <div class="hero">
+          <div>
+            <h1 class="hero-name">Andrea Simone Foderaro</h1>
+            <p class="hero-title">Software Engineer · Backend &amp; API Specialist</p>
+            <p class="hero-location">Piobesi d'Alba, Italy (open to remote)</p>
+            <nav aria-label="Contact links">
+              <ul class="contact-links">
+                <li>
+                  <a href="mailto:foderaroandrea@gmail.com" aria-label="Email Andrea">
+                    foderaroandrea@gmail.com
+                  </a>
+                </li>
+                <li>
+                  <a href="https://github.com/fodecoder" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in new tab)">
+                    github/fodecoder
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/in/andrea-foderaro" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (opens in new tab)">
+                    linkedin/andrea-foderaro
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <!-- ── SUMMARY ── -->
+      <section aria-labelledby="summary-heading">
+        <div class="section-header">
+          <h2 id="summary-heading">Summary</h2>
+        </div>
+        <div class="summary">
+          <p>
+            I'm a backend engineer with 4+ years of professional experience building production systems in C# and .NET. I take full ownership of features — from data modelling to deployment — and care about the things that are hard to see: async job queues, clean API contracts, testable code, and systems that don't break under load. I've led a team of four engineers, worked directly with clients to define service boundaries, and introduced CI and unit testing to codebases that had neither. I hold a Master's degree in Computer Engineering from Politecnico di Torino (110/110 cum laude).
+          </p>
+        </div>
+      </section>
+
+      <!-- ── SKILLS ── -->
+      <section aria-labelledby="skills-heading">
+        <div class="section-header">
+          <h2 id="skills-heading">Skills</h2>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-group">
+            <p class="skill-group-label">Languages</p>
+            <ul class="skill-tags" aria-label="Programming languages">
+              <li class="skill-tag">C#</li>
+              <li class="skill-tag">Python</li>
+              <li class="skill-tag">SQL</li>
+              <li class="skill-tag">KQL</li>
+              <li class="skill-tag">C</li>
+              <li class="skill-tag">C++</li>
+              <li class="skill-tag">Java</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <p class="skill-group-label">Frameworks</p>
+            <ul class="skill-tags" aria-label="Frameworks and runtimes">
+              <li class="skill-tag">.NET</li>
+              <li class="skill-tag">ASP.NET Core</li>
+              <li class="skill-tag">Blazor</li>
+              <li class="skill-tag">AngularJS</li>
+              <li class="skill-tag">Qt</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <p class="skill-group-label">Cloud &amp; Infra</p>
+            <ul class="skill-tags" aria-label="Cloud and infrastructure">
+              <li class="skill-tag">Azure</li>
+              <li class="skill-tag">Kubernetes</li>
+              <li class="skill-tag">Docker</li>
+              <li class="skill-tag">Azure IoT Hub</li>
+              <li class="skill-tag">Event Hubs</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <p class="skill-group-label">AI &amp; ML</p>
+            <ul class="skill-tags" aria-label="AI and machine learning">
+              <li class="skill-tag">NLP</li>
+              <li class="skill-tag">SVM</li>
+              <li class="skill-tag">CNN</li>
+              <li class="skill-tag">GAN</li>
+              <li class="skill-tag">Decision Trees</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <p class="skill-group-label">Practices</p>
+            <ul class="skill-tags" aria-label="Engineering practices">
+              <li class="skill-tag">REST API design</li>
+              <li class="skill-tag">CI/CD</li>
+              <li class="skill-tag">Unit Testing</li>
+              <li class="skill-tag">Scrum</li>
+              <li class="skill-tag">Code Review</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <p class="skill-group-label">Languages spoken</p>
+            <ul class="skill-tags" aria-label="Spoken languages">
+              <li class="skill-tag">Italian (native)</li>
+              <li class="skill-tag">English (IELTS 7.5)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── EXPERIENCE ── -->
+      <section aria-labelledby="experience-heading">
+        <div class="section-header">
+          <h2 id="experience-heading">Experience</h2>
+        </div>
+        <ol class="experience-list" reversed>
+
+          <li class="job">
+            <div class="job-header">
+              <div>
+                <p class="job-company">Taglio S.R.L</p>
+                <p class="job-role">Software Engineer — Backend Developer &amp; API Specialist</p>
+              </div>
+              <div class="job-meta">
+                <p class="job-dates">
+                  <time datetime="2024-06">Jun 2024</time> – Present
+                </p>
+                <p class="job-location">Piobesi d'Alba, Italy</p>
+              </div>
+            </div>
+            <div class="job-stack" aria-label="Technologies used">
+              <span class="skill-tag">.NET</span>
+              <span class="skill-tag">C#</span>
+              <span class="skill-tag">Blazor</span>
+              <span class="skill-tag">Python</span>
+            </div>
+            <ul class="job-bullet-list">
+              <li>Built backend systems in C# and .NET for inventory management, design workflows, and CNC machine control — from data modelling to deployment, including async job queues and hardware-facing serial protocols.</li>
+              <li>Designed and implemented 50+ REST APIs for inventory, production, and machine integration, with versioned contracts, consistent error handling, and p99 response times under 200 ms under high load.</li>
+              <li>Introduced unit testing and CI practices to a codebase with no prior test coverage, using AI-assisted tooling to accelerate test creation and catch regressions before production.</li>
+            </ul>
+          </li>
+
+          <li class="job">
+            <div class="job-header">
+              <div>
+                <p class="job-company">Cluster Reply S.R.L</p>
+                <p class="job-role">Software Engineer — Technical Lead</p>
+              </div>
+              <div class="job-meta">
+                <p class="job-dates">
+                  <time datetime="2021-04">Apr 2021</time> – <time datetime="2024-05">May 2024</time>
+                </p>
+                <p class="job-location">Turin, Italy</p>
+              </div>
+            </div>
+            <div class="job-stack" aria-label="Technologies used">
+              <span class="skill-tag">Azure</span>
+              <span class="skill-tag">.NET</span>
+              <span class="skill-tag">C#</span>
+              <span class="skill-tag">Kubernetes</span>
+              <span class="skill-tag">AngularJS</span>
+              <span class="skill-tag">Azure IoT Hub</span>
+              <span class="skill-tag">Event Hubs</span>
+            </div>
+            <ul class="job-bullet-list">
+              <li>Led development of an IoT diagnostic platform: designed the telemetry ingestion pipeline, Kubernetes-based microservice architecture, and AngularJS dashboards for field engineers across multiple client sites.</li>
+              <li>Coordinated a team of 4 engineers — divided work by module, defined inter-service interfaces upfront, and ran code reviews focused on testability and clear architecture boundaries.</li>
+              <li>Made architectural decisions for client integrations, determining service boundaries, defining shared contracts, and eliminating layers that added complexity without addressing real constraints.</li>
+              <li>Developed Azure IoT solutions: device registries, device-to-cloud message handlers, and stream processing with Event Hubs. Applied managed services selectively based on project constraints.</li>
+            </ul>
+          </li>
+
+        </ol>
+      </section>
+
+      <!-- ── PROJECTS ── -->
+      <section aria-labelledby="projects-heading">
+        <div class="section-header">
+          <h2 id="projects-heading">Projects</h2>
+        </div>
+        <div class="projects-list">
+
+          <article class="project" aria-labelledby="proj-classifier">
+            <div class="project-header">
+              <h3 class="project-title" id="proj-classifier">Automatic Classification of Software Issue Reports</h3>
+              <span class="project-label">Master's Thesis</span>
+            </div>
+            <p class="project-desc">
+              Developed an automated bug classifier in collaboration with Mozilla. Framed as an NLP classification problem — evaluated SVM, CNN, and Decision Trees, then selected the model with the best precision/recall balance. Hand-labelled 250+ bug reports to build the training dataset; wrote the full pipeline from data ingestion to model evaluation.
+            </p>
+            <ul class="project-stack" aria-label="Technologies">
+              <li><span class="skill-tag">Python</span></li>
+              <li><span class="skill-tag">NLP</span></li>
+              <li><span class="skill-tag">SVM</span></li>
+              <li><span class="skill-tag">CNN</span></li>
+              <li><span class="skill-tag">Decision Trees</span></li>
+            </ul>
+          </article>
+
+          <article class="project" aria-labelledby="proj-editor">
+            <div class="project-header">
+              <h3 class="project-title" id="proj-editor">Shared Collaborative Text Editor</h3>
+              <span class="project-label">Master's Project</span>
+            </div>
+            <p class="project-desc">
+              Built a real-time collaborative text editor in C++ using Qt. Implemented operational transformation for conflict resolution, a custom CRDT-inspired merge strategy, and a client-server sync protocol to handle concurrent edits without locking.
+            </p>
+            <ul class="project-stack" aria-label="Technologies">
+              <li><span class="skill-tag">C++</span></li>
+              <li><span class="skill-tag">Qt</span></li>
+              <li><span class="skill-tag">CRDT</span></li>
+              <li><span class="skill-tag">Operational Transformation</span></li>
+            </ul>
+          </article>
+
+          <article class="project" aria-labelledby="proj-ml">
+            <div class="project-header">
+              <h3 class="project-title" id="proj-ml">ML Models for Image Generation &amp; Bioinformatics</h3>
+              <span class="project-label">Master's Project</span>
+            </div>
+            <p class="project-desc">
+              Developed and compared GAN, SVM, CNN, and Decision Tree models for image generation and bioinformatics classification tasks. Used a shared evaluation framework and documented failure modes, not just accuracy figures.
+            </p>
+            <ul class="project-stack" aria-label="Technologies">
+              <li><span class="skill-tag">Python</span></li>
+              <li><span class="skill-tag">GAN</span></li>
+              <li><span class="skill-tag">SVM</span></li>
+              <li><span class="skill-tag">CNN</span></li>
+            </ul>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ── EDUCATION ── -->
+      <section aria-labelledby="education-heading">
+        <div class="section-header">
+          <h2 id="education-heading">Education</h2>
+        </div>
+        <div class="education-list">
+
+          <div class="edu-item">
+            <div class="edu-header">
+              <div>
+                <p class="edu-institution">Politecnico di Torino (PoliTO)</p>
+                <p class="edu-degree">M.S., Computer Engineering</p>
+              </div>
+              <p class="edu-date"><time datetime="2020-10">Oct 2020</time></p>
+            </div>
+            <p class="edu-grade">110/110 cum laude</p>
+            <p class="edu-note">Top 5% of graduating class · Turin, Italy</p>
+          </div>
+
+          <div class="edu-item">
+            <div class="edu-header">
+              <div>
+                <p class="edu-institution">Politecnico di Torino (PoliTO)</p>
+                <p class="edu-degree">B.S., Computer Engineering</p>
+              </div>
+              <p class="edu-date"><time datetime="2018-07">Jul 2018</time></p>
+            </div>
+            <p class="edu-grade">110/110</p>
+            <p class="edu-note">Top 10% of graduating class · Turin, Italy</p>
+          </div>
+
+          <div class="edu-item">
+            <div class="edu-header">
+              <div>
+                <p class="edu-institution">Mississippi State University</p>
+                <p class="edu-degree">Exchange Program</p>
+              </div>
+              <p class="edu-date">
+                <time datetime="2017-08">Aug</time> – <time datetime="2017-12">Dec 2017</time>
+              </p>
+            </div>
+            <p class="edu-grade">GPA 4.0 / 4.0</p>
+            <p class="edu-note">Top 5% in class · Mississippi, USA</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── EXTRAS ── -->
+      <section aria-labelledby="extras-heading">
+        <div class="section-header">
+          <h2 id="extras-heading">Other</h2>
+        </div>
+        <div class="extras-grid">
+
+          <div class="extra-item">
+            <h3>IEEE-HKN Member</h3>
+            <p>Active member of the PoliTO Mu-Nu Chapter of IEEE Eta Kappa Nu, the IEEE honour society for electrical and computer engineers.</p>
+          </div>
+
+          <div class="extra-item">
+            <h3>Summer Camp Leadership</h3>
+            <p>7 summers as organiser and manager, coordinating 700+ children annually. Led a 40-person staff in the most recent season — first real experience managing a team under operational constraints.</p>
+          </div>
+
+          <div class="extra-item">
+            <h3>Relevant Coursework</h3>
+            <p>Data Structures &amp; Algorithms · Machine Learning &amp; AI · Database Technologies · Distributed Programming · Big Data · Operating Systems · Data Communications Networks</p>
+          </div>
+
+          <div class="extra-item">
+            <h3>Interests</h3>
+            <p>Traveling · Soccer · Running · Fitness</p>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ── FOOTER ── -->
+    <footer>
+      <p>Built with HTML &amp; CSS · Hosted on GitHub Pages</p>
+      <p>Andrea Simone Foderaro · <time datetime="2025">2025</time></p>
+    </footer>
+
+  </div>
+</body>
 </html>
