@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Andrea Simone Foderaro — Software Engineer</title>
-  <meta name="description" content="Backend software engineer specialising in .NET, C#, Azure, and distributed systems. Based in Italy.">
+  <title>Andrea Simone Foderaro — Senior Software Engineer</title>
+  <meta name="description" content="Senior software engineer specialising in .NET, C#, Azure, and distributed systems. Based in Italy.">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Andrea Simone Foderaro — Software Engineer">
+  <meta property="og:title" content="Andrea Simone Foderaro — Senior Software Engineer">
   <meta property="og:description" content="Backend engineer with 4+ years building APIs, IoT platforms, and distributed systems on .NET and Azure.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_US">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Andrea Simone Foderaro — Software Engineer">
+  <meta name="twitter:title" content="Andrea Simone Foderaro — Senior Software Engineer">
   <meta name="twitter:description" content="Backend engineer · .NET · Azure · Kubernetes · Piobesi d'Alba, Italy">
 
   <!-- Fonts -->
@@ -205,6 +205,87 @@
       max-width: 72ch;
       color: var(--text);
       line-height: 1.75;
+    }
+
+    /* ── Philosophy ── */
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-5);
+    }
+
+    .principle h3 {
+      margin-bottom: var(--space-2);
+    }
+
+    .principle p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── Writing ── */
+    .writing-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .post {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: var(--space-4) var(--space-5);
+    }
+
+    .post summary {
+      cursor: pointer;
+      list-style: none;
+    }
+    .post summary::-webkit-details-marker { display: none; }
+
+    .post-summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-3);
+    }
+
+    .post-toggle {
+      font-family: var(--font-mono);
+      color: var(--accent);
+      flex-shrink: 0;
+      transition: transform 0.15s;
+    }
+    .post[open] .post-toggle {
+      transform: rotate(45deg);
+    }
+
+    .post-meta {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: var(--space-1);
+    }
+
+    .post-excerpt {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-top: var(--space-2);
+    }
+
+    .post-body {
+      margin-top: var(--space-4);
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .post-body p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.7;
     }
 
     /* ── Skills ── */
@@ -529,7 +610,7 @@
         <div class="hero">
           <div>
             <h1 class="hero-name">Andrea Simone Foderaro</h1>
-            <p class="hero-title">Software Engineer · Backend &amp; API Specialist</p>
+            <p class="hero-title">Senior Software Engineer · Backend &amp; API Specialist</p>
             <p class="hero-location">Piobesi d'Alba, Italy (open to remote)</p>
             <nav aria-label="Contact links">
               <ul class="contact-links">
@@ -544,8 +625,8 @@
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.linkedin.com/in/andrea-foderaro" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (opens in new tab)">
-                    linkedin/andrea-foderaro
+                  <a href="https://www.linkedin.com/in/andrea-simone-foderaro/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (opens in new tab)">
+                    linkedin/andrea-simone-foderaro
                   </a>
                 </li>
               </ul>
@@ -563,6 +644,36 @@
           <p>
             I'm a backend engineer with 4+ years of professional experience building production systems in C# and .NET. I take full ownership of features — from data modelling to deployment — and care about the things that are hard to see: async job queues, clean API contracts, testable code, and systems that don't break under load. I've led a team of four engineers, worked directly with clients to define service boundaries, and introduced CI and unit testing to codebases that had neither. I hold a Master's degree in Computer Engineering from Politecnico di Torino (110/110 cum laude).
           </p>
+        </div>
+      </section>
+
+      <!-- ── PHILOSOPHY ── -->
+      <section aria-labelledby="philosophy-heading">
+        <div class="section-header">
+          <h2 id="philosophy-heading">How I Work</h2>
+        </div>
+        <div class="philosophy-grid">
+
+          <div class="principle">
+            <h3>Constraints beat best practices</h3>
+            <p>A monolith that ships in two weeks beats a microservice architecture that takes three months to solve a scale problem the product doesn't have yet. I pick the boring option unless there's a specific, current reason not to.</p>
+          </div>
+
+          <div class="principle">
+            <h3>AI is a multiplier, not an oracle</h3>
+            <p>I use AI tooling heavily for tests, docs, and first-pass review — it's faster at generating coverage than I am. But I read and correct its output before it merges. It compounds judgment, it doesn't replace it.</p>
+          </div>
+
+          <div class="principle">
+            <h3>Own the outcome, not the ticket</h3>
+            <p>The most useful thing I did at Cluster Reply wasn't in my ticket: a data migration kept dropping connections mid-transfer, duplicating records. I designed an idempotent, checkpointed pipeline so retries never doubled a record and a dropped connection resumed instead of restarting. Nobody asked for that fix by name — the outage did.</p>
+          </div>
+
+          <div class="principle">
+            <h3>Remove the layer if you can</h3>
+            <p>Every abstraction has to earn its place. If I can delete a layer, a service, or a config file without losing correctness, I do — fewer moving parts means fewer ways to be wrong at 2am.</p>
+          </div>
+
         </div>
       </section>
 
@@ -645,7 +756,7 @@
             <div class="job-header">
               <div>
                 <p class="job-company">Taglio S.R.L</p>
-                <p class="job-role">Software Engineer — Backend Developer &amp; API Specialist</p>
+                <p class="job-role">Senior Software Engineer — Backend Developer &amp; API Specialist</p>
               </div>
               <div class="job-meta">
                 <p class="job-dates">
@@ -662,7 +773,7 @@
             </div>
             <ul class="job-bullet-list">
               <li>Built backend systems in C# and .NET for inventory management, design workflows, and CNC machine control — from data modelling to deployment, including async job queues and hardware-facing serial protocols.</li>
-              <li>Designed and implemented 50+ REST APIs for inventory, production, and machine integration, with versioned contracts, consistent error handling, and p99 response times under 200 ms under high load.</li>
+              <li>Designed and implemented 60+ REST &amp; GraphQL APIs for inventory, production, and machine integration, with versioned contracts, consistent error handling, and p99 response times under 200 ms under high load.</li>
               <li>Introduced unit testing and CI practices to a codebase with no prior test coverage, using AI-assisted tooling to accelerate test creation and catch regressions before production.</li>
             </ul>
           </li>
@@ -755,6 +866,52 @@
               <li><span class="skill-tag">CNN</span></li>
             </ul>
           </article>
+
+        </div>
+      </section>
+
+      <!-- ── WRITING ── -->
+      <section aria-labelledby="writing-heading">
+        <div class="section-header">
+          <h2 id="writing-heading">Writing</h2>
+        </div>
+        <div class="writing-list">
+
+          <details class="post">
+            <summary>
+              <div class="post-summary-row">
+                <h3>What 250 hand-labeled bugs taught me about triage</h3>
+                <span class="post-toggle" aria-hidden="true">+</span>
+              </div>
+              <p class="post-meta">Oct 2020 · 5 min read</p>
+              <p class="post-excerpt">Building a bug classifier with Mozilla's dev team, and why the boring part — the labeling — mattered more than the model.</p>
+            </summary>
+            <div class="post-body">
+              <p>Mozilla's issue tracker gets more bug reports than any triage team can read carefully. Most reports are duplicates, misfiled, or missing the one detail that tells you which component actually owns the problem. The thesis brief was simple to state and hard to do: build something that could route incoming reports to the right area automatically, well enough that a human triager would trust it.</p>
+              <p>I started where most people don't want to: labeling. I went through 250+ historical bug reports by hand, assigning each one a category based on the same signals a human triager would use — title, description, stack traces where present, affected component. It was slow and unglamorous, and it's also the reason the rest of the project worked. A classifier is only as good as the ground truth you give it, and there wasn't an existing labeled dataset that matched how Mozilla's team actually triaged.</p>
+              <p>With that dataset, I treated it as a text classification problem: turn free-text bug reports into features a model can use, then compare a few standard approaches (SVM, CNN, decision trees) rather than assume the fanciest one wins. The naive baseline — routing everything to the most common component — sat around 70% accuracy, which sounds better than it is; it just reflects how skewed the categories are. The trained classifier pushed that to 92% accuracy, with 92% precision and 89% recall on held-out data, and cut the manual classification time for new reports by roughly 80%.</p>
+              <p>The gap between 70% and 92% wasn't a smarter algorithm. It was feature engineering — figuring out which parts of a bug report actually carry signal — and being honest about class imbalance instead of optimizing for a metric that rewarded ignoring the rare, important categories. The model that shipped was less exciting than the one I wanted to build first. It was also the one that worked.</p>
+              <p>What I'd tell someone starting a similar project: budget real time for labeling, distrust your first accuracy number until you've checked it against a sane baseline, and pick evaluation metrics that reflect what the humans downstream actually care about — for triage, missing a rare-but-critical category is worse than a wrong guess on a common one.</p>
+            </div>
+          </details>
+
+          <details class="post">
+            <summary>
+              <div class="post-summary-row">
+                <h3>Idempotency, not retries: fixing a migration that kept corrupting itself</h3>
+                <span class="post-toggle" aria-hidden="true">+</span>
+              </div>
+              <p class="post-meta">Mar 2024 · 6 min read</p>
+              <p class="post-excerpt">500 GB, a source connection that dropped at random, and why "just retry it" was making things worse, not better.</p>
+            </summary>
+            <div class="post-body">
+              <p>At Cluster Reply I owned a migration: roughly 500 GB of data moving from a legacy provider into Azure, feeding an IoT diagnostics platform that field engineers relied on. The problem wasn't volume, it was reliability. The source connection dropped at random — sometimes mid-batch, sometimes mid-record — and the first version of the pipeline handled that the obvious way: catch the error, retry.</p>
+              <p>That's what broke it. A retry after a partial failure doesn't know what already landed on the other side. Some batches got written twice, producing duplicate records. Others got abandoned halfway, leaving the destination with incomplete data and no clean way to tell "finished" from "half-finished" just by looking at it. Retrying made the pipeline more resilient to the symptom and worse at the actual job: getting a correct copy of the data across.</p>
+              <p>The fix was to stop treating retries as a resilience mechanism and start treating the whole transfer as something that had to be safe to redo from any point. Two changes did most of the work. First, deduplication keys: every record carried an identifier that made a second write of the same record a no-op instead of a duplicate, so a retry could never double anything up regardless of how far the first attempt had gotten. Second, checkpointed, resumable batches built on Azure Durable Functions — the transfer tracked its own progress as durable state, so a dropped connection meant the next attempt picked up from the last completed checkpoint instead of restarting the whole batch, or worse, the whole migration.</p>
+              <p>Once both were in place, a dropped connection stopped being an incident. It was just a batch that resumed a few seconds later, with the same guarantee whether it failed once or ten times: the destination ends up correct, not merely "probably correct if nothing went wrong."</p>
+              <p>The lesson generalizes past this one migration: if a network call can fail partway through and you're relying on "just retry" to paper over it, you don't have a resilience strategy, you have a data integrity bug waiting for enough scale to show up. Idempotency has to be designed in at the record level — you can't bolt it on with a try/catch after the fact.</p>
+            </div>
+          </details>
 
         </div>
       </section>
