@@ -655,23 +655,23 @@
         <div class="philosophy-grid">
 
           <div class="principle">
-            <h3>Constraints beat best practices</h3>
-            <p>A monolith that ships in two weeks beats a microservice architecture that takes three months to solve a scale problem the product doesn't have yet. I pick the boring option unless there's a specific, current reason not to.</p>
+            <h3>I default to boring</h3>
+            <p>A monolith that ships in two weeks beats microservices that take three months to solve a scaling problem the product doesn't have yet. I need an actual reason to add complexity, not a hunch it'll pay off someday.</p>
           </div>
 
           <div class="principle">
-            <h3>AI is a multiplier, not an oracle</h3>
-            <p>I use AI tooling heavily for tests, docs, and first-pass review — it's faster at generating coverage than I am. But I read and correct its output before it merges. It compounds judgment, it doesn't replace it.</p>
+            <h3>AI writes the draft, I check the last version</h3>
+            <p>I use AI a lot for tests, docs, and first-pass reviews — it's faster than me at producing volume. Nothing merges until I've actually read it and fixed what's wrong with it.</p>
           </div>
 
           <div class="principle">
-            <h3>Own the outcome, not the ticket</h3>
-            <p>The most useful thing I did at Cluster Reply wasn't in my ticket: a data migration kept dropping connections mid-transfer, duplicating records. I designed an idempotent, checkpointed pipeline so retries never doubled a record and a dropped connection resumed instead of restarting. Nobody asked for that fix by name — the outage did.</p>
+            <h3>The fix that wasn't on my ticket</h3>
+            <p>At Cluster Reply, a data migration kept dropping connections mid-transfer and duplicating records. Nobody assigned me that bug. I rebuilt the pipeline to be idempotent and checkpointed, so a retry never doubled a record and a dropped connection picked up where it left off instead of starting over.</p>
           </div>
 
           <div class="principle">
-            <h3>Remove the layer if you can</h3>
-            <p>Every abstraction has to earn its place. If I can delete a layer, a service, or a config file without losing correctness, I do — fewer moving parts means fewer ways to be wrong at 2am.</p>
+            <h3>If I can delete it, I do</h3>
+            <p>Every layer, service, or config file has to earn its place. Fewer moving parts means fewer ways to be wrong at 2am.</p>
           </div>
 
         </div>
@@ -907,9 +907,9 @@
             <div class="post-body">
               <p>At Cluster Reply I owned a migration: roughly 500 GB of data moving from a legacy provider into Azure, feeding an IoT diagnostics platform that field engineers relied on. The problem wasn't volume, it was reliability. The source connection dropped at random — sometimes mid-batch, sometimes mid-record — and the first version of the pipeline handled that the obvious way: catch the error, retry.</p>
               <p>That's what broke it. A retry after a partial failure doesn't know what already landed on the other side. Some batches got written twice, producing duplicate records. Others got abandoned halfway, leaving the destination with incomplete data and no clean way to tell "finished" from "half-finished" just by looking at it. Retrying made the pipeline more resilient to the symptom and worse at the actual job: getting a correct copy of the data across.</p>
-              <p>The fix was to stop treating retries as a resilience mechanism and start treating the whole transfer as something that had to be safe to redo from any point. Two changes did most of the work. First, deduplication keys: every record carried an identifier that made a second write of the same record a no-op instead of a duplicate, so a retry could never double anything up regardless of how far the first attempt had gotten. Second, checkpointed, resumable batches built on Azure Durable Functions — the transfer tracked its own progress as durable state, so a dropped connection meant the next attempt picked up from the last completed checkpoint instead of restarting the whole batch, or worse, the whole migration.</p>
-              <p>Once both were in place, a dropped connection stopped being an incident. It was just a batch that resumed a few seconds later, with the same guarantee whether it failed once or ten times: the destination ends up correct, not merely "probably correct if nothing went wrong."</p>
-              <p>The lesson generalizes past this one migration: if a network call can fail partway through and you're relying on "just retry" to paper over it, you don't have a resilience strategy, you have a data integrity bug waiting for enough scale to show up. Idempotency has to be designed in at the record level — you can't bolt it on with a try/catch after the fact.</p>
+              <p>The fix was to make the whole transfer safe to redo from any point, instead of just catching errors and trying again. Two changes did most of the work. First, deduplication keys: every record carried an identifier that made a second write of the same record a no-op, so a retry could never double anything up, no matter how far the first attempt had gotten. Second, checkpointed, resumable batches built on Azure Durable Functions — the transfer tracked its own progress, so a dropped connection meant the next attempt picked up from the last completed checkpoint instead of restarting the whole batch, or worse, the whole migration.</p>
+              <p>After that, a dropped connection stopped being an incident. It was just a batch that resumed a few seconds later, with the same result whether it failed once or ten times: the destination ends up correct, not "probably correct if nothing went wrong."</p>
+              <p>The lesson holds outside this one migration too: if a network call can fail partway through and "just retry" is your whole plan for that, you don't have a fix — you have a bug that hasn't shown up at scale yet. Idempotency has to be built in at the record level. You can't bolt it on with a try/catch afterward.</p>
             </div>
           </details>
 
@@ -988,7 +988,32 @@
 
           <div class="extra-item">
             <h3>Interests</h3>
-            <p>Traveling · Soccer · Running · Fitness</p>
+            <p>Traveling · Running · Fitness</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── PASSIONS ── -->
+      <section aria-labelledby="passions-heading">
+        <div class="section-header">
+          <h2 id="passions-heading">Passions</h2>
+        </div>
+        <div class="philosophy-grid">
+
+          <div class="principle">
+            <h3>Football</h3>
+            <p>Defender, amateur leagues, most of my life. I spend most of a game watching where the ball is about to go, not chasing where it already was.</p>
+          </div>
+
+          <div class="principle">
+            <h3>Anime &amp; manga</h3>
+            <p>I read and watch across genres, but shonen is where I keep coming back — One Piece most of all.</p>
+          </div>
+
+          <div class="principle">
+            <h3>TCG</h3>
+            <p>I play One Piece TCG and Pokémon TCG, mostly casual games at local stores rather than competitive circuits. Bandai's Naruto TCG is coming out soon and I'm already planning to pick it up.</p>
           </div>
 
         </div>

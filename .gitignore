@@ -26,3 +26,7 @@ dist-ssr
 .DS_Store
 Thumbs.db
 *.pdf
+
+# Local agent guidance — not for version control
+CLAUDE.md
+skills/
