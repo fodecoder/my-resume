@@ -20,46 +20,51 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
   <style>
     /* ── Design tokens ── */
     :root {
-      --bg:          #FAFAF9;
-      --surface:     #F2F1EF;
-      --border:      #E0DDD8;
-      --text:        #1A1917;
-      --muted:       #6B6860;
-      --accent:      #2563EB;
-      --accent-dim:  #DBEAFE;
-      --mono-bg:     #EEECEA;
+      --color-bg:        #f3f2f2;
+      --color-surface:   #eae9e9;
+      --color-text:      #201e1d;
+      --color-accent:    #0088b0;
+      --color-accent-2:  #d6006c;
+      --color-divider:   color-mix(in srgb, #201e1d 16%, transparent);
 
-      --font-body:   'Inter', system-ui, sans-serif;
-      --font-mono:   'JetBrains Mono', 'Fira Code', monospace;
+      --color-accent-100: #e9f8ff;
+      --color-accent-600: #1186ac;
+      --color-accent-700: #006786;
+      --color-accent-800: #004961;
 
-      --space-1:  4px;
-      --space-2:  8px;
-      --space-3:  12px;
-      --space-4:  16px;
-      --space-5:  24px;
-      --space-6:  32px;
-      --space-7:  48px;
-      --space-8:  64px;
+      --font-heading: 'Source Serif 4', Georgia, serif;
+      --font-body:    'Source Serif 4', Georgia, serif;
 
-      --max-w: 860px;
-      --radius: 3px;
+      --space-1: 5px;
+      --space-2: 10px;
+      --space-3: 15px;
+      --space-4: 20px;
+      --space-6: 30px;
+      --space-8: 40px;
+
+      --max-w: 900px;
+      --radius-sm: 1px;
+      --radius-md: 2px;
     }
 
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg:         #0F0F0E;
-        --surface:    #1A1917;
-        --border:     #2C2B28;
-        --text:       #E8E6E1;
-        --muted:      #8C8A84;
-        --accent:     #60A5FA;
-        --accent-dim: #1E3A5F;
-        --mono-bg:    #1E1D1A;
+        --color-bg:       #171615;
+        --color-surface:  #201e1d;
+        --color-text:     #ece9e6;
+        --color-accent:   #4fc3e0;
+        --color-accent-2: #ff6ba8;
+        --color-divider:  color-mix(in srgb, #ece9e6 18%, transparent);
+
+        --color-accent-100: #133440;
+        --color-accent-600: #6fd0ea;
+        --color-accent-700: #8fdcf0;
+        --color-accent-800: #cdf0fa;
       }
     }
 
@@ -73,8 +78,8 @@
     }
 
     body {
-      background: var(--bg);
-      color: var(--text);
+      background: var(--color-bg);
+      color: var(--color-text);
       font-family: var(--font-body);
       font-size: 0.9375rem;
       line-height: 1.65;
@@ -87,89 +92,105 @@
       position: absolute;
       top: -100%;
       left: var(--space-4);
-      background: var(--accent);
+      background: var(--color-accent);
       color: #fff;
       padding: var(--space-2) var(--space-4);
+      font-family: var(--font-body);
       font-size: 0.875rem;
-      font-weight: 500;
-      border-radius: var(--radius);
+      font-weight: 600;
+      border-radius: var(--radius-sm);
       text-decoration: none;
       z-index: 100;
     }
     .skip-link:focus { top: var(--space-4); }
 
+    a { color: var(--color-accent); text-underline-offset: 3px; }
+    a:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+    :focus { outline: none; }
+    :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+
+    /* ── Nav ── */
+    .nav {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      padding: var(--space-3) clamp(20px, 5vw, 72px);
+    }
+    .nav-brand {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 1.05rem;
+      margin-right: auto;
+    }
+    .nav a.nav-link {
+      color: var(--color-accent-700);
+      text-decoration: none;
+      font-size: 0.875rem;
+    }
+    .nav a.nav-link:hover { color: var(--color-accent); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      text-decoration: none;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 0.875rem;
+      line-height: 1.2;
+      padding: var(--space-2) calc(var(--space-3) * 1.2);
+      border-radius: var(--radius-md);
+    }
+    .btn-primary { background: var(--color-accent); color: #fff; }
+    .btn-primary:hover { background: var(--color-accent-600); }
+    .btn-primary:active { background: var(--color-accent-700); }
+
     /* ── Layout ── */
     .page-wrapper {
       max-width: var(--max-w);
       margin: 0 auto;
-      padding: var(--space-7) var(--space-5);
+      padding: 0 clamp(20px, 5vw, 72px) var(--space-8);
     }
 
     /* ── Typography ── */
-    h1 { font-size: clamp(1.75rem, 5vw, 2.25rem); font-weight: 600; letter-spacing: -0.025em; line-height: 1.15; }
-    h2 { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
-    h3 { font-size: 1rem; font-weight: 600; line-height: 1.3; }
-
-    a {
-      color: var(--accent);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-    a:hover { text-decoration: none; }
-    a:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 3px;
-      border-radius: 2px;
-    }
+    h1, h2, h3 { font-family: var(--font-heading); font-weight: 600; }
+    h1 { font-size: clamp(2rem, 6vw, 3.25rem); letter-spacing: -0.02em; line-height: 1.08; }
+    h2 { font-size: 0.8125rem; letter-spacing: 0.08em; text-transform: uppercase; color: color-mix(in srgb, var(--color-text) 70%, transparent); }
+    h3 { font-size: 1.05rem; line-height: 1.3; }
 
     /* ── Section dividers ── */
-    section { margin-top: var(--space-7); }
+    section { margin-top: var(--space-6); }
     section:first-of-type { margin-top: 0; }
 
     .section-header {
-      display: flex;
-      align-items: center;
-      gap: var(--space-3);
-      margin-bottom: var(--space-5);
-      padding-bottom: var(--space-3);
-      border-bottom: 1px solid var(--border);
-    }
-    .section-header h2 { white-space: nowrap; }
-    .section-header::after {
-      content: '';
-      flex: 1;
+      margin-bottom: var(--space-4);
     }
 
-    /* ── Hero ── */
+    /* ── Masthead ── */
+    header.masthead { padding: 40px 0 8px; }
     .hero {
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: var(--space-4);
+      gap: var(--space-6);
       align-items: start;
     }
 
-    .hero-name { margin-bottom: var(--space-2); }
-
     .hero-title {
-      font-size: 1.0625rem;
-      color: var(--muted);
+      font-size: 1.15rem;
+      color: color-mix(in srgb, var(--color-text) 72%, transparent);
       font-weight: 400;
-      margin-bottom: var(--space-4);
+      margin-top: 12px;
     }
 
     .hero-location {
-      font-size: 0.875rem;
-      color: var(--muted);
-      font-family: var(--font-mono);
-      display: flex;
-      align-items: center;
-      gap: var(--space-2);
-      margin-bottom: var(--space-4);
-    }
-
-    .hero-location::before {
-      content: '📍';
-      font-size: 0.75rem;
+      font-size: 0.9375rem;
+      color: color-mix(in srgb, var(--color-text) 60%, transparent);
+      margin-top: 6px;
     }
 
     .contact-links {
@@ -177,168 +198,114 @@
       display: flex;
       flex-wrap: wrap;
       gap: var(--space-2) var(--space-4);
-    }
-
-    .contact-links li { display: flex; align-items: center; gap: var(--space-2); }
-
-    .contact-links a {
-      font-family: var(--font-mono);
-      font-size: 0.8125rem;
-      color: var(--text);
-      text-decoration: none;
-      padding: var(--space-1) var(--space-3);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      transition: border-color 0.15s, background 0.15s;
-    }
-    .contact-links a:hover {
-      border-color: var(--accent);
-      background: var(--accent-dim);
-    }
-    .contact-links a:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-    }
-
-    /* ── Summary ── */
-    .summary p {
-      max-width: 72ch;
-      color: var(--text);
-      line-height: 1.75;
-    }
-
-    /* ── Now ── */
-    .now-block {
-      border-left: 2px solid var(--accent);
-      padding: var(--space-1) 0 var(--space-1) var(--space-4);
-    }
-
-    .now-block p {
-      max-width: 72ch;
-      color: var(--text);
-      line-height: 1.7;
+      margin-top: 20px;
       font-size: 0.9rem;
     }
+    .contact-links a { text-decoration: underline; text-underline-offset: 3px; }
+    .contact-links a:hover { text-decoration: none; }
 
-    .now-updated {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-top: var(--space-2);
+    .avatar {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
     }
 
-    /* ── Philosophy ── */
-    .philosophy-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: var(--space-5);
-    }
-
-    .principle h3 {
-      margin-bottom: var(--space-2);
-    }
-
-    .principle p {
-      font-size: 0.875rem;
-      color: var(--muted);
-      line-height: 1.65;
-    }
-
-    /* ── Writing ── */
-    .writing-list {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-4);
-    }
-
-    .post {
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: var(--space-4) var(--space-5);
-    }
-
-    .post summary {
-      cursor: pointer;
-      list-style: none;
-    }
-    .post summary::-webkit-details-marker { display: none; }
-
-    .post-summary-row {
+    /* ── Front-page furniture ── */
+    .furniture { padding: 24px 0 var(--space-6); }
+    .rule-heavy { height: 5px; border: 0; margin: 0; border-top: 2px solid var(--color-text); border-bottom: 1px solid var(--color-text); }
+    .rule { height: 0; border: 0; border-top: 1px solid var(--color-text); margin: 0; }
+    .kicker-row {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
-      gap: var(--space-3);
+      flex-wrap: wrap;
+      gap: 8px 28px;
+      margin: 0;
+      padding: 10px 0;
+      font-size: 0.8125rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: color-mix(in srgb, var(--color-text) 70%, transparent);
     }
-
-    .post-toggle {
-      font-family: var(--font-mono);
-      color: var(--accent);
-      flex-shrink: 0;
-      transition: transform 0.15s;
+    .kicker-row span { white-space: nowrap; }
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px 40px;
+      padding: 24px 0;
     }
-    .post[open] .post-toggle {
-      transform: rotate(45deg);
-    }
-
-    .post-meta {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-top: var(--space-1);
-    }
-
-    .post-excerpt {
-      font-size: 0.875rem;
-      color: var(--muted);
-      margin-top: var(--space-2);
-    }
-
-    .post-body {
-      margin-top: var(--space-4);
-      padding-top: var(--space-4);
-      border-top: 1px solid var(--border);
+    .stat {
       display: flex;
       flex-direction: column;
-      gap: var(--space-3);
+      gap: 4px;
+      font-size: 0.875rem;
+    }
+    .stat strong {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 1.625rem;
+      color: var(--color-accent-700);
     }
 
-    .post-body p {
-      font-size: 0.875rem;
-      color: var(--muted);
-      line-height: 1.7;
+    /* ── Summary / Now ── */
+    .summary p, .now-block blockquote {
+      max-width: 72ch;
+    }
+    .summary p { font-size: 1.0625rem; line-height: 1.75; }
+
+    .now-block blockquote {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.375rem;
+      line-height: 1.6;
+    }
+    .now-updated {
+      font-size: 0.8125rem;
+      color: color-mix(in srgb, var(--color-text) 60%, transparent);
+      margin-top: 12px;
+    }
+
+    /* ── Philosophy / Passions ── */
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 32px 40px;
+    }
+    .principle h3 { margin-bottom: 8px; }
+    .principle p {
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      color: color-mix(in srgb, var(--color-text) 75%, transparent);
     }
 
     /* ── Skills ── */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
       gap: var(--space-4);
     }
-
-    .skill-group { }
     .skill-group-label {
-      font-family: var(--font-mono);
-      font-size: 0.6875rem;
-      font-weight: 500;
-      color: var(--muted);
-      letter-spacing: 0.08em;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      margin-bottom: var(--space-2);
+      color: color-mix(in srgb, var(--color-text) 60%, transparent);
+      margin-bottom: 10px;
     }
-
     .skill-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: var(--space-1) var(--space-2);
+      gap: 6px;
     }
-
-    .skill-tag {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      background: var(--mono-bg);
-      color: var(--text);
-      padding: 2px var(--space-2);
-      border-radius: var(--radius);
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.6875rem;
+      letter-spacing: 0.02em;
+      padding: 3px 10px;
+      border-radius: 1.5px;
+      border: 1px solid var(--color-accent);
+      color: var(--color-accent-700);
       white-space: nowrap;
     }
 
@@ -346,168 +313,154 @@
     .experience-list {
       display: flex;
       flex-direction: column;
-      gap: var(--space-6);
+      gap: 40px;
     }
-
-    .job { }
-
     .job-header {
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: var(--space-2);
-      margin-bottom: var(--space-3);
+      gap: 8px;
+      margin-bottom: 14px;
     }
-
-    .job-company {
-      font-weight: 600;
-      font-size: 1rem;
-    }
-
+    .job-company { font-family: var(--font-heading); font-weight: 600; font-size: 1.1rem; }
     .job-role {
-      font-size: 0.875rem;
-      color: var(--muted);
+      font-size: 0.9375rem;
+      color: color-mix(in srgb, var(--color-text) 70%, transparent);
       margin-top: 2px;
     }
-
-    .job-meta {
-      text-align: right;
-    }
-
+    .job-meta { text-align: right; }
     .job-dates {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--muted);
+      font-size: 0.8125rem;
+      font-feature-settings: 'pnum' 1;
+      color: color-mix(in srgb, var(--color-text) 60%, transparent);
       white-space: nowrap;
     }
-
     .job-location {
-      font-size: 0.75rem;
-      color: var(--muted);
-      text-align: right;
+      font-size: 0.8125rem;
+      color: color-mix(in srgb, var(--color-text) 60%, transparent);
+      margin-top: 2px;
     }
-
     .job-stack {
       display: flex;
       flex-wrap: wrap;
-      gap: var(--space-1);
-      margin-bottom: var(--space-3);
+      gap: 6px;
+      margin-bottom: 14px;
     }
-
     .job-bullet-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: var(--space-2);
+      gap: 10px;
     }
-
     .job-bullet-list li {
-      padding-left: var(--space-4);
+      padding-left: 18px;
       position: relative;
-      font-size: 0.9rem;
-      line-height: 1.6;
+      font-size: 0.9375rem;
+      line-height: 1.65;
     }
-
     .job-bullet-list li::before {
       content: '–';
       position: absolute;
       left: 0;
-      color: var(--muted);
+      color: color-mix(in srgb, var(--color-text) 55%, transparent);
     }
 
-    /* Timeline accent */
-    .experience-list .job {
-      position: relative;
-      padding-left: var(--space-5);
-      border-left: 2px solid var(--border);
-    }
-
-    .experience-list .job::before {
-      content: '';
-      position: absolute;
-      left: -5px;
-      top: 6px;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-      border: 2px solid var(--bg);
-    }
-
-    /* ── Projects ── */
-    .projects-list {
+    /* ── Projects / Writing cards ── */
+    .projects-list, .writing-list {
       display: flex;
       flex-direction: column;
-      gap: var(--space-5);
+      gap: 20px;
     }
+    .projects-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
 
-    .project { }
-
-    .project-header {
+    .card {
       display: flex;
-      align-items: baseline;
-      gap: var(--space-3);
-      flex-wrap: wrap;
-      margin-bottom: var(--space-2);
+      flex-direction: column;
+      gap: 10px;
+      padding: var(--space-3);
+      border-radius: var(--radius-md);
+      background: var(--color-surface);
     }
-
-    .project-title {
-      font-weight: 600;
-      font-size: 0.9375rem;
-    }
-
-    .project-label {
-      font-family: var(--font-mono);
-      font-size: 0.6875rem;
-      color: var(--muted);
-      background: var(--mono-bg);
-      padding: 1px var(--space-2);
-      border-radius: var(--radius);
+    .card-kicker {
+      font-size: 0.625rem;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      color: var(--color-accent);
     }
-
-    .project-desc {
-      font-size: 0.9rem;
-      line-height: 1.65;
-      margin-bottom: var(--space-2);
+    .card-title {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 1.0625rem;
+      line-height: 1.25;
     }
-
-    .project-stack {
+    .card-body {
+      margin: 0;
+      font-size: 0.875rem;
+      opacity: 0.85;
+      line-height: 1.6;
+    }
+    .card-meta {
+      font-size: 0.75rem;
+      color: color-mix(in srgb, var(--color-text) 55%, transparent);
+    }
+    .card-stack {
       display: flex;
       flex-wrap: wrap;
-      gap: var(--space-1);
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .post summary { cursor: pointer; list-style: none; }
+    .post summary::-webkit-details-marker { display: none; }
+    .post-summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .post-toggle {
+      color: var(--color-accent-700);
+      flex-shrink: 0;
+      transition: transform 0.15s;
+    }
+    .post[open] .post-toggle { transform: rotate(45deg); }
+    .post-body {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--color-divider);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
 
     /* ── Education ── */
     .education-list {
       display: flex;
       flex-direction: column;
-      gap: var(--space-5);
+      gap: 24px;
     }
-
-    .edu-item { }
     .edu-header {
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: var(--space-2);
-      margin-bottom: var(--space-1);
+      gap: 8px;
+      margin-bottom: 4px;
     }
-    .edu-institution { font-weight: 600; }
-    .edu-degree { color: var(--muted); font-size: 0.875rem; margin-top: 2px; }
+    .edu-institution { font-family: var(--font-heading); font-weight: 600; font-size: 1rem; }
+    .edu-degree { color: color-mix(in srgb, var(--color-text) 70%, transparent); font-size: 0.9rem; margin-top: 2px; }
     .edu-date {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--muted);
+      font-size: 0.8125rem;
+      font-feature-settings: 'pnum' 1;
+      color: color-mix(in srgb, var(--color-text) 60%, transparent);
       white-space: nowrap;
     }
     .edu-grade {
-      font-family: var(--font-mono);
-      font-size: 0.8125rem;
-      color: var(--accent);
+      font-size: 0.875rem;
+      color: var(--color-accent-700);
+      font-feature-settings: 'pnum' 1;
+      margin-top: 2px;
     }
     .edu-note {
       font-size: 0.8125rem;
-      color: var(--muted);
+      color: color-mix(in srgb, var(--color-text) 60%, transparent);
       margin-top: 2px;
     }
 
@@ -517,97 +470,62 @@
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       gap: var(--space-4);
     }
-
-    .extra-item h3 {
-      font-size: 0.875rem;
-      font-weight: 600;
-      margin-bottom: var(--space-1);
-    }
-
+    .extra-item h3 { font-size: 0.95rem; margin-bottom: 6px; }
     .extra-item p {
-      font-size: 0.8125rem;
-      color: var(--muted);
+      font-size: 0.875rem;
+      color: color-mix(in srgb, var(--color-text) 70%, transparent);
       line-height: 1.55;
     }
 
     /* ── Footer ── */
     footer {
-      margin-top: var(--space-7);
+      margin-top: var(--space-8);
       padding-top: var(--space-4);
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--color-divider);
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: var(--space-2);
+      gap: 8px;
     }
-
     footer p {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--muted);
+      font-size: 0.8125rem;
+      color: color-mix(in srgb, var(--color-text) 60%, transparent);
     }
 
     /* ── Responsive ── */
     @media (max-width: 640px) {
-      .page-wrapper { padding: var(--space-5) var(--space-4); }
-
-      .hero {
-        grid-template-columns: 1fr;
-      }
-
-      .job-header {
-        grid-template-columns: 1fr;
-      }
-      .job-meta {
-        text-align: left;
-      }
-      .edu-header {
-        grid-template-columns: 1fr;
-      }
-
-      .skills-grid {
-        grid-template-columns: 1fr 1fr;
-      }
+      .hero { grid-template-columns: 1fr; }
+      .hero figure { order: -1; }
+      .avatar { width: 96px; height: 96px; }
+      .job-header, .edu-header { grid-template-columns: 1fr; }
+      .job-meta { text-align: left; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .stat-row { grid-template-columns: 1fr 1fr; }
     }
 
     @media (max-width: 380px) {
       .skills-grid { grid-template-columns: 1fr; }
+      .stat-row { grid-template-columns: 1fr; }
     }
 
     /* ── Print ── */
     @media print {
       :root {
-        --bg: #fff;
-        --surface: #f5f5f5;
-        --border: #ccc;
-        --text: #111;
-        --muted: #555;
-        --accent: #1a4ca8;
-        --accent-dim: #e8eef8;
-        --mono-bg: #eee;
+        --color-bg: #fff;
+        --color-surface: #f5f5f5;
+        --color-text: #111;
+        --color-accent: #006786;
+        --color-accent-700: #004961;
+        --color-divider: #ccc;
       }
-
       body { font-size: 10pt; }
-
-      .page-wrapper {
-        max-width: 100%;
-        padding: 0.5cm 1cm;
-      }
-
-      h1 { font-size: 20pt; }
-      section { margin-top: 18pt; }
-
-      .contact-links a {
-        border: none;
-        padding: 0;
-        font-size: 8pt;
-      }
-
-      .experience-list .job { break-inside: avoid; }
-      .project { break-inside: avoid; }
-
-      a { color: var(--accent); text-decoration: none; }
+      .nav { display: none; }
+      .page-wrapper { max-width: 100%; padding: 0 1cm; }
+      h1 { font-size: 22pt; }
+      section { margin-top: 16pt; }
+      .experience-list .job, .projects-list .card { break-inside: avoid; }
+      a { text-decoration: none; }
       footer { display: none; }
     }
 
@@ -622,38 +540,56 @@
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
+  <nav class="nav" aria-label="Primary">
+    <span class="nav-brand">Andrea Simone Foderaro</span>
+    <a class="nav-link" href="#experience-heading">Experience</a>
+    <a class="nav-link" href="#projects-heading">Projects</a>
+    <a class="nav-link" href="#writing-heading">Writing</a>
+    <a class="nav-link" href="#education-heading">Education</a>
+    <a class="btn btn-primary" href="assets/Andrea_Simone_Foderaro_CV_2026.pdf" target="_blank" rel="noopener noreferrer">View résumé</a>
+  </nav>
+
   <div class="page-wrapper">
     <main id="main-content">
 
-      <!-- ── HERO ── -->
-      <header>
+      <!-- ── MASTHEAD ── -->
+      <header class="masthead">
         <div class="hero">
           <div>
             <h1 class="hero-name">Andrea Simone Foderaro</h1>
             <p class="hero-title">Senior Software Engineer · Backend &amp; API Specialist</p>
-            <p class="hero-location">Piobesi d'Alba, Italy (open to remote)</p>
+            <p class="hero-location">📍 Piobesi d'Alba, Italy (open to remote)</p>
             <nav aria-label="Contact links">
               <ul class="contact-links">
-                <li>
-                  <a href="mailto:foderaroandrea@gmail.com" aria-label="Email Andrea">
-                    foderaroandrea@gmail.com
-                  </a>
-                </li>
-                <li>
-                  <a href="https://github.com/fodecoder" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in new tab)">
-                    github/fodecoder
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.linkedin.com/in/andrea-simone-foderaro/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (opens in new tab)">
-                    linkedin/andrea-simone-foderaro
-                  </a>
-                </li>
+                <li><a href="mailto:foderaroandrea@gmail.com" aria-label="Email Andrea">foderaroandrea@gmail.com</a></li>
+                <li><a href="https://github.com/fodecoder" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in new tab)">github/fodecoder</a></li>
+                <li><a href="https://www.linkedin.com/in/andrea-simone-foderaro/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (opens in new tab)">linkedin/andrea-simone-foderaro</a></li>
               </ul>
             </nav>
           </div>
+          <figure>
+            <img class="avatar" src="docs/avatar.png" alt="Portrait of Andrea Simone Foderaro">
+          </figure>
         </div>
       </header>
+
+      <!-- ── FRONT-PAGE FURNITURE ── -->
+      <section class="furniture" aria-label="At a glance">
+        <hr class="rule-heavy">
+        <p class="kicker-row">
+          <span>Backend &amp; API Specialist</span>
+          <span>.NET · C# · Azure</span>
+          <span>Italian (native) · English (IELTS 7.5)</span>
+        </p>
+        <hr class="rule">
+        <div class="stat-row">
+          <p class="stat"><span>REST &amp; GraphQL APIs shipped</span><strong>60+</strong></p>
+          <p class="stat"><span>Engineers led</span><strong>4</strong></p>
+          <p class="stat"><span>p99 response time</span><strong>&lt;200ms</strong></p>
+          <p class="stat"><span>Thesis grade</span><strong>110/110</strong></p>
+        </div>
+        <hr class="rule">
+      </section>
 
       <!-- ── SUMMARY ── -->
       <section aria-labelledby="summary-heading">
@@ -673,9 +609,9 @@
           <h2 id="now-heading">Now</h2>
         </div>
         <div class="now-block">
-          <p>
+          <blockquote>
             Going through Anthropic's Claude Academy right now, trying to understand how Claude actually works under the hood. Alongside that I've been picking up JavaScript, React, and Go, mostly out of curiosity about what's different after five years of C# and .NET.
-          </p>
+          </blockquote>
           <p class="now-updated">Updated Sept 2026</p>
         </div>
       </section>
@@ -719,60 +655,60 @@
           <div class="skill-group">
             <p class="skill-group-label">Languages</p>
             <ul class="skill-tags" aria-label="Programming languages">
-              <li class="skill-tag">C#</li>
-              <li class="skill-tag">Python</li>
-              <li class="skill-tag">SQL</li>
-              <li class="skill-tag">KQL</li>
-              <li class="skill-tag">C</li>
-              <li class="skill-tag">C++</li>
-              <li class="skill-tag">Java</li>
+              <li class="tag">C#</li>
+              <li class="tag">Python</li>
+              <li class="tag">SQL</li>
+              <li class="tag">KQL</li>
+              <li class="tag">C</li>
+              <li class="tag">C++</li>
+              <li class="tag">Java</li>
             </ul>
           </div>
           <div class="skill-group">
             <p class="skill-group-label">Frameworks</p>
             <ul class="skill-tags" aria-label="Frameworks and runtimes">
-              <li class="skill-tag">.NET</li>
-              <li class="skill-tag">ASP.NET Core</li>
-              <li class="skill-tag">Blazor</li>
-              <li class="skill-tag">AngularJS</li>
-              <li class="skill-tag">Qt</li>
+              <li class="tag">.NET</li>
+              <li class="tag">ASP.NET Core</li>
+              <li class="tag">Blazor</li>
+              <li class="tag">AngularJS</li>
+              <li class="tag">Qt</li>
             </ul>
           </div>
           <div class="skill-group">
             <p class="skill-group-label">Cloud &amp; Infra</p>
             <ul class="skill-tags" aria-label="Cloud and infrastructure">
-              <li class="skill-tag">Azure</li>
-              <li class="skill-tag">Kubernetes</li>
-              <li class="skill-tag">Docker</li>
-              <li class="skill-tag">Azure IoT Hub</li>
-              <li class="skill-tag">Event Hubs</li>
+              <li class="tag">Azure</li>
+              <li class="tag">Kubernetes</li>
+              <li class="tag">Docker</li>
+              <li class="tag">Azure IoT Hub</li>
+              <li class="tag">Event Hubs</li>
             </ul>
           </div>
           <div class="skill-group">
             <p class="skill-group-label">AI &amp; ML</p>
             <ul class="skill-tags" aria-label="AI and machine learning">
-              <li class="skill-tag">NLP</li>
-              <li class="skill-tag">SVM</li>
-              <li class="skill-tag">CNN</li>
-              <li class="skill-tag">GAN</li>
-              <li class="skill-tag">Decision Trees</li>
+              <li class="tag">NLP</li>
+              <li class="tag">SVM</li>
+              <li class="tag">CNN</li>
+              <li class="tag">GAN</li>
+              <li class="tag">Decision Trees</li>
             </ul>
           </div>
           <div class="skill-group">
             <p class="skill-group-label">Practices</p>
             <ul class="skill-tags" aria-label="Engineering practices">
-              <li class="skill-tag">REST API design</li>
-              <li class="skill-tag">CI/CD</li>
-              <li class="skill-tag">Unit Testing</li>
-              <li class="skill-tag">Scrum</li>
-              <li class="skill-tag">Code Review</li>
+              <li class="tag">REST API design</li>
+              <li class="tag">CI/CD</li>
+              <li class="tag">Unit Testing</li>
+              <li class="tag">Scrum</li>
+              <li class="tag">Code Review</li>
             </ul>
           </div>
           <div class="skill-group">
             <p class="skill-group-label">Languages spoken</p>
             <ul class="skill-tags" aria-label="Spoken languages">
-              <li class="skill-tag">Italian (native)</li>
-              <li class="skill-tag">English (IELTS 7.5)</li>
+              <li class="tag">Italian (native)</li>
+              <li class="tag">English (IELTS 7.5)</li>
             </ul>
           </div>
         </div>
@@ -783,7 +719,7 @@
         <div class="section-header">
           <h2 id="experience-heading">Experience</h2>
         </div>
-        <ol class="experience-list" reversed>
+        <ol class="experience-list" reversed style="list-style:none">
 
           <li class="job">
             <div class="job-header">
@@ -792,17 +728,15 @@
                 <p class="job-role">Senior Software Engineer — Backend Developer &amp; API Specialist</p>
               </div>
               <div class="job-meta">
-                <p class="job-dates">
-                  <time datetime="2024-06">Jun 2024</time> – Present
-                </p>
+                <p class="job-dates"><time datetime="2024-06">Jun 2024</time> – Present</p>
                 <p class="job-location">Piobesi d'Alba, Italy</p>
               </div>
             </div>
             <div class="job-stack" aria-label="Technologies used">
-              <span class="skill-tag">.NET</span>
-              <span class="skill-tag">C#</span>
-              <span class="skill-tag">Blazor</span>
-              <span class="skill-tag">Python</span>
+              <span class="tag">.NET</span>
+              <span class="tag">C#</span>
+              <span class="tag">Blazor</span>
+              <span class="tag">Python</span>
             </div>
             <ul class="job-bullet-list">
               <li>Built backend systems in C# and .NET for inventory management, design workflows, and CNC machine control — from data modelling to deployment, including async job queues and hardware-facing serial protocols.</li>
@@ -818,20 +752,18 @@
                 <p class="job-role">Software Engineer — Technical Lead</p>
               </div>
               <div class="job-meta">
-                <p class="job-dates">
-                  <time datetime="2021-04">Apr 2021</time> – <time datetime="2024-05">May 2024</time>
-                </p>
+                <p class="job-dates"><time datetime="2021-04">Apr 2021</time> – <time datetime="2024-05">May 2024</time></p>
                 <p class="job-location">Turin, Italy</p>
               </div>
             </div>
             <div class="job-stack" aria-label="Technologies used">
-              <span class="skill-tag">Azure</span>
-              <span class="skill-tag">.NET</span>
-              <span class="skill-tag">C#</span>
-              <span class="skill-tag">Kubernetes</span>
-              <span class="skill-tag">AngularJS</span>
-              <span class="skill-tag">Azure IoT Hub</span>
-              <span class="skill-tag">Event Hubs</span>
+              <span class="tag">Azure</span>
+              <span class="tag">.NET</span>
+              <span class="tag">C#</span>
+              <span class="tag">Kubernetes</span>
+              <span class="tag">AngularJS</span>
+              <span class="tag">Azure IoT Hub</span>
+              <span class="tag">Event Hubs</span>
             </div>
             <ul class="job-bullet-list">
               <li>Led development of an IoT diagnostic platform: designed the telemetry ingestion pipeline, Kubernetes-based microservice architecture, and AngularJS dashboards for field engineers across multiple client sites.</li>
@@ -851,52 +783,40 @@
         </div>
         <div class="projects-list">
 
-          <article class="project" aria-labelledby="proj-classifier">
-            <div class="project-header">
-              <h3 class="project-title" id="proj-classifier">Automatic Classification of Software Issue Reports</h3>
-              <span class="project-label">Master's Thesis</span>
-            </div>
-            <p class="project-desc">
-              Developed an automated bug classifier in collaboration with Mozilla. Framed as an NLP classification problem — evaluated SVM, CNN, and Decision Trees, then selected the model with the best precision/recall balance. Hand-labelled 250+ bug reports to build the training dataset; wrote the full pipeline from data ingestion to model evaluation.
-            </p>
-            <ul class="project-stack" aria-label="Technologies">
-              <li><span class="skill-tag">Python</span></li>
-              <li><span class="skill-tag">NLP</span></li>
-              <li><span class="skill-tag">SVM</span></li>
-              <li><span class="skill-tag">CNN</span></li>
-              <li><span class="skill-tag">Decision Trees</span></li>
+          <article class="card" aria-labelledby="proj-classifier">
+            <div class="card-kicker">Master's Thesis</div>
+            <h3 class="card-title" id="proj-classifier">Automatic Classification of Software Issue Reports</h3>
+            <p class="card-body">Developed an automated bug classifier in collaboration with Mozilla. Framed as an NLP classification problem — evaluated SVM, CNN, and Decision Trees, then selected the model with the best precision/recall balance. Hand-labelled 250+ bug reports to build the training dataset; wrote the full pipeline from data ingestion to model evaluation.</p>
+            <ul class="card-stack" aria-label="Technologies">
+              <li><span class="tag">Python</span></li>
+              <li><span class="tag">NLP</span></li>
+              <li><span class="tag">SVM</span></li>
+              <li><span class="tag">CNN</span></li>
+              <li><span class="tag">Decision Trees</span></li>
             </ul>
           </article>
 
-          <article class="project" aria-labelledby="proj-editor">
-            <div class="project-header">
-              <h3 class="project-title" id="proj-editor">Shared Collaborative Text Editor</h3>
-              <span class="project-label">Master's Project</span>
-            </div>
-            <p class="project-desc">
-              Built a real-time collaborative text editor in C++ using Qt. Implemented operational transformation for conflict resolution, a custom CRDT-inspired merge strategy, and a client-server sync protocol to handle concurrent edits without locking.
-            </p>
-            <ul class="project-stack" aria-label="Technologies">
-              <li><span class="skill-tag">C++</span></li>
-              <li><span class="skill-tag">Qt</span></li>
-              <li><span class="skill-tag">CRDT</span></li>
-              <li><span class="skill-tag">Operational Transformation</span></li>
+          <article class="card" aria-labelledby="proj-editor">
+            <div class="card-kicker">Master's Project</div>
+            <h3 class="card-title" id="proj-editor">Shared Collaborative Text Editor</h3>
+            <p class="card-body">Built a real-time collaborative text editor in C++ using Qt. Implemented operational transformation for conflict resolution, a custom CRDT-inspired merge strategy, and a client-server sync protocol to handle concurrent edits without locking.</p>
+            <ul class="card-stack" aria-label="Technologies">
+              <li><span class="tag">C++</span></li>
+              <li><span class="tag">Qt</span></li>
+              <li><span class="tag">CRDT</span></li>
+              <li><span class="tag">Operational Transformation</span></li>
             </ul>
           </article>
 
-          <article class="project" aria-labelledby="proj-ml">
-            <div class="project-header">
-              <h3 class="project-title" id="proj-ml">ML Models for Image Generation &amp; Bioinformatics</h3>
-              <span class="project-label">Master's Project</span>
-            </div>
-            <p class="project-desc">
-              Developed and compared GAN, SVM, CNN, and Decision Tree models for image generation and bioinformatics classification tasks. Used a shared evaluation framework and documented failure modes, not just accuracy figures.
-            </p>
-            <ul class="project-stack" aria-label="Technologies">
-              <li><span class="skill-tag">Python</span></li>
-              <li><span class="skill-tag">GAN</span></li>
-              <li><span class="skill-tag">SVM</span></li>
-              <li><span class="skill-tag">CNN</span></li>
+          <article class="card" aria-labelledby="proj-ml">
+            <div class="card-kicker">Master's Project</div>
+            <h3 class="card-title" id="proj-ml">ML Models for Image Generation &amp; Bioinformatics</h3>
+            <p class="card-body">Developed and compared GAN, SVM, CNN, and Decision Tree models for image generation and bioinformatics classification tasks. Used a shared evaluation framework and documented failure modes, not just accuracy figures.</p>
+            <ul class="card-stack" aria-label="Technologies">
+              <li><span class="tag">Python</span></li>
+              <li><span class="tag">GAN</span></li>
+              <li><span class="tag">SVM</span></li>
+              <li><span class="tag">CNN</span></li>
             </ul>
           </article>
 
@@ -910,39 +830,39 @@
         </div>
         <div class="writing-list">
 
-          <details class="post">
+          <details class="card post">
             <summary>
               <div class="post-summary-row">
-                <h3>What 250 hand-labeled bugs taught me about triage</h3>
+                <h3 class="card-title">What 250 hand-labeled bugs taught me about triage</h3>
                 <span class="post-toggle" aria-hidden="true">+</span>
               </div>
-              <p class="post-meta">Oct 2020 · 5 min read</p>
-              <p class="post-excerpt">Building a bug classifier with Mozilla's dev team, and why the boring part — the labeling — mattered more than the model.</p>
+              <p class="card-meta">Oct 2020 · 5 min read</p>
+              <p class="card-body">Building a bug classifier with Mozilla's dev team, and why the boring part — the labeling — mattered more than the model.</p>
             </summary>
             <div class="post-body">
-              <p>Mozilla's issue tracker gets more bug reports than any triage team can read carefully. Most reports are duplicates, misfiled, or missing the one detail that tells you which component actually owns the problem. The thesis brief was simple to state and hard to do: build something that could route incoming reports to the right area automatically, well enough that a human triager would trust it.</p>
-              <p>I started where most people don't want to: labeling. I went through 250+ historical bug reports by hand, assigning each one a category based on the same signals a human triager would use — title, description, stack traces where present, affected component. It was slow and unglamorous, and it's also the reason the rest of the project worked. A classifier is only as good as the ground truth you give it, and there wasn't an existing labeled dataset that matched how Mozilla's team actually triaged.</p>
-              <p>With that dataset, I treated it as a text classification problem: turn free-text bug reports into features a model can use, then compare a few standard approaches (SVM, CNN, decision trees) rather than assume the fanciest one wins. The naive baseline — routing everything to the most common component — sat around 70% accuracy, which sounds better than it is; it just reflects how skewed the categories are. The trained classifier pushed that to 92% accuracy, with 92% precision and 89% recall on held-out data, and cut the manual classification time for new reports by roughly 80%.</p>
-              <p>The gap between 70% and 92% wasn't a smarter algorithm. It was feature engineering — figuring out which parts of a bug report actually carry signal — and being honest about class imbalance instead of optimizing for a metric that rewarded ignoring the rare, important categories. The model that shipped was less exciting than the one I wanted to build first. It was also the one that worked.</p>
-              <p>What I'd tell someone starting a similar project: budget real time for labeling, distrust your first accuracy number until you've checked it against a sane baseline, and pick evaluation metrics that reflect what the humans downstream actually care about — for triage, missing a rare-but-critical category is worse than a wrong guess on a common one.</p>
+              <p class="card-body">Mozilla's issue tracker gets more bug reports than any triage team can read carefully. Most reports are duplicates, misfiled, or missing the one detail that tells you which component actually owns the problem. The thesis brief was simple to state and hard to do: build something that could route incoming reports to the right area automatically, well enough that a human triager would trust it.</p>
+              <p class="card-body">I started where most people don't want to: labeling. I went through 250+ historical bug reports by hand, assigning each one a category based on the same signals a human triager would use — title, description, stack traces where present, affected component. It was slow and unglamorous, and it's also the reason the rest of the project worked. A classifier is only as good as the ground truth you give it, and there wasn't an existing labeled dataset that matched how Mozilla's team actually triaged.</p>
+              <p class="card-body">With that dataset, I treated it as a text classification problem: turn free-text bug reports into features a model can use, then compare a few standard approaches (SVM, CNN, decision trees) rather than assume the fanciest one wins. The naive baseline — routing everything to the most common component — sat around 70% accuracy, which sounds better than it is; it just reflects how skewed the categories are. The trained classifier pushed that to 92% accuracy, with 92% precision and 89% recall on held-out data, and cut the manual classification time for new reports by roughly 80%.</p>
+              <p class="card-body">The gap between 70% and 92% wasn't a smarter algorithm. It was feature engineering — figuring out which parts of a bug report actually carry signal — and being honest about class imbalance instead of optimizing for a metric that rewarded ignoring the rare, important categories. The model that shipped was less exciting than the one I wanted to build first. It was also the one that worked.</p>
+              <p class="card-body">What I'd tell someone starting a similar project: budget real time for labeling, distrust your first accuracy number until you've checked it against a sane baseline, and pick evaluation metrics that reflect what the humans downstream actually care about — for triage, missing a rare-but-critical category is worse than a wrong guess on a common one.</p>
             </div>
           </details>
 
-          <details class="post">
+          <details class="card post">
             <summary>
               <div class="post-summary-row">
-                <h3>Idempotency, not retries: fixing a migration that kept corrupting itself</h3>
+                <h3 class="card-title">Idempotency, not retries: fixing a migration that kept corrupting itself</h3>
                 <span class="post-toggle" aria-hidden="true">+</span>
               </div>
-              <p class="post-meta">Mar 2024 · 6 min read</p>
-              <p class="post-excerpt">500 GB, a source connection that dropped at random, and why "just retry it" was making things worse, not better.</p>
+              <p class="card-meta">Mar 2024 · 6 min read</p>
+              <p class="card-body">500 GB, a source connection that dropped at random, and why "just retry it" was making things worse, not better.</p>
             </summary>
             <div class="post-body">
-              <p>At Cluster Reply I owned a migration: roughly 500 GB of data moving from a legacy provider into Azure, feeding an IoT diagnostics platform that field engineers relied on. The problem wasn't volume, it was reliability. The source connection dropped at random — sometimes mid-batch, sometimes mid-record — and the first version of the pipeline handled that the obvious way: catch the error, retry.</p>
-              <p>That's what broke it. A retry after a partial failure doesn't know what already landed on the other side. Some batches got written twice, producing duplicate records. Others got abandoned halfway, leaving the destination with incomplete data and no clean way to tell "finished" from "half-finished" just by looking at it. Retrying made the pipeline more resilient to the symptom and worse at the actual job: getting a correct copy of the data across.</p>
-              <p>The fix was to make the whole transfer safe to redo from any point, instead of just catching errors and trying again. Two changes did most of the work. First, deduplication keys: every record carried an identifier that made a second write of the same record a no-op, so a retry could never double anything up, no matter how far the first attempt had gotten. Second, checkpointed, resumable batches built on Azure Durable Functions — the transfer tracked its own progress, so a dropped connection meant the next attempt picked up from the last completed checkpoint instead of restarting the whole batch, or worse, the whole migration.</p>
-              <p>After that, a dropped connection stopped being an incident. It was just a batch that resumed a few seconds later, with the same result whether it failed once or ten times: the destination ends up correct, not "probably correct if nothing went wrong."</p>
-              <p>The lesson holds outside this one migration too: if a network call can fail partway through and "just retry" is your whole plan for that, you don't have a fix — you have a bug that hasn't shown up at scale yet. Idempotency has to be built in at the record level. You can't bolt it on with a try/catch afterward.</p>
+              <p class="card-body">At Cluster Reply I owned a migration: roughly 500 GB of data moving from a legacy provider into Azure, feeding an IoT diagnostics platform that field engineers relied on. The problem wasn't volume, it was reliability. The source connection dropped at random — sometimes mid-batch, sometimes mid-record — and the first version of the pipeline handled that the obvious way: catch the error, retry.</p>
+              <p class="card-body">That's what broke it. A retry after a partial failure doesn't know what already landed on the other side. Some batches got written twice, producing duplicate records. Others got abandoned halfway, leaving the destination with incomplete data and no clean way to tell "finished" from "half-finished" just by looking at it. Retrying made the pipeline more resilient to the symptom and worse at the actual job: getting a correct copy of the data across.</p>
+              <p class="card-body">The fix was to make the whole transfer safe to redo from any point, instead of just catching errors and trying again. Two changes did most of the work. First, deduplication keys: every record carried an identifier that made a second write of the same record a no-op, so a retry could never double anything up, no matter how far the first attempt had gotten. Second, checkpointed, resumable batches built on Azure Durable Functions — the transfer tracked its own progress, so a dropped connection meant the next attempt picked up from the last completed checkpoint instead of restarting the whole batch, or worse, the whole migration.</p>
+              <p class="card-body">After that, a dropped connection stopped being an incident. It was just a batch that resumed a few seconds later, with the same result whether it failed once or ten times: the destination ends up correct, not "probably correct if nothing went wrong."</p>
+              <p class="card-body">The lesson holds outside this one migration too: if a network call can fail partway through and "just retry" is your whole plan for that, you don't have a fix — you have a bug that hasn't shown up at scale yet. Idempotency has to be built in at the record level. You can't bolt it on with a try/catch afterward.</p>
             </div>
           </details>
 
@@ -986,9 +906,7 @@
                 <p class="edu-institution">Mississippi State University</p>
                 <p class="edu-degree">Exchange Program</p>
               </div>
-              <p class="edu-date">
-                <time datetime="2017-08">Aug</time> – <time datetime="2017-12">Dec 2017</time>
-              </p>
+              <p class="edu-date"><time datetime="2017-08">Aug</time> – <time datetime="2017-12">Dec 2017</time></p>
             </div>
             <p class="edu-grade">GPA 4.0 / 4.0</p>
             <p class="edu-note">Top 5% in class · Mississippi, USA</p>
@@ -1057,7 +975,7 @@
     <!-- ── FOOTER ── -->
     <footer>
       <p>Built with HTML &amp; CSS · Hosted on GitHub Pages</p>
-      <p>Andrea Simone Foderaro · <time datetime="2025">2025</time></p>
+      <p>Andrea Simone Foderaro · <time datetime="2026">2026</time></p>
     </footer>
 
   </div>
@@ -1065,7 +983,7 @@
   <script>
     console.log(
       "%cAndrea Simone Foderaro",
-      "font-size:18px;font-weight:bold;color:#0d9488;"
+      "font-size:18px;font-weight:bold;color:#0088b0;"
     );
     console.log("Hey — you opened the console on a resume site. I like that already.");
     console.log("If you're hiring: foderaroandrea@gmail.com");

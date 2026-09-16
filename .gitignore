@@ -30,3 +30,6 @@ Thumbs.db
 # Local agent guidance — not for version control
 CLAUDE.md
 skills/
+
+# Design handoff bundle — not for version control
+resume-website-redesign/
