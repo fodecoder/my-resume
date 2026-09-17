@@ -26,6 +26,7 @@ dist-ssr
 .DS_Store
 Thumbs.db
 *.pdf
+!assets/Andrea_Simone_Foderaro_CV_2026.pdf
 
 # Local agent guidance — not for version control
 CLAUDE.md
