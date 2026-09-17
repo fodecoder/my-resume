@@ -161,6 +161,20 @@
     h2 { font-size: 0.8125rem; letter-spacing: 0.08em; text-transform: uppercase; color: color-mix(in srgb, var(--color-text) 70%, transparent); }
     h3 { font-size: 1.05rem; line-height: 1.3; }
 
+    /* ── Justified prose ── */
+    .summary p,
+    .now-block blockquote,
+    .principle p,
+    .job-bullet-list li,
+    .card-body,
+    .post-body p,
+    .recommendation blockquote,
+    .extra-item p {
+      text-align: justify;
+      text-align-last: left;
+      hyphens: auto;
+    }
+
     /* ── Section dividers ── */
     section { margin-top: var(--space-6); }
     section:first-of-type { margin-top: 0; }
