@@ -465,6 +465,28 @@
       margin-top: 2px;
     }
 
+    /* ── Recommendations ── */
+    .recommendations-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-6) 40px;
+    }
+    .recommendation blockquote {
+      margin: 0;
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.0625rem;
+      line-height: 1.6;
+    }
+    .recommendation cite {
+      display: block;
+      font-style: normal;
+      font-size: 0.8125rem;
+      color: color-mix(in srgb, var(--color-text) 60%, transparent);
+      margin-top: 10px;
+    }
+
     /* ── Extras ── */
     .extras-grid {
       display: grid;
@@ -914,6 +936,34 @@
 
         </div>
       </section>
+
+      <!--
+        ── RECOMMENDATIONS (pending real content) ──
+        Andrea has written evaluations from professors at Mississippi State
+        (from the 2017 exchange) to pull quotes from. DO NOT invent or
+        paraphrase a quote here — copy the professor's actual words, keep it
+        short, and attribute it with their real name and title. Once filled
+        in, delete this comment wrapper (and the one below) to publish.
+
+      <section aria-labelledby="recommendations-heading">
+        <div class="section-header">
+          <h2 id="recommendations-heading">Recommendations</h2>
+        </div>
+        <div class="recommendations-list">
+
+          <div class="recommendation">
+            <blockquote>[Exact quote from the evaluation goes here.]</blockquote>
+            <cite>— [Full name], [Title], Mississippi State University</cite>
+          </div>
+
+          <div class="recommendation">
+            <blockquote>[Exact quote from a second evaluation, if there is one.]</blockquote>
+            <cite>— [Full name], [Title], Mississippi State University</cite>
+          </div>
+
+        </div>
+      </section>
+      -->
 
       <!-- ── EXTRAS ── -->
       <section aria-labelledby="extras-heading">
